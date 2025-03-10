@@ -1,16 +1,17 @@
 ---
 layout: leatherman
-title: "Late-80's Leatherman PST A+ Near Mint Saber Clip Blade "LEATHERMAN USA" No Dates"
+title: "Late-80's Leatherman PST A+ Near Mint Saber Clip Blade 'LEATHERMAN USA' No Dates"
 slug: late-80s-leatherman-pst-a-near-mint-saber-clip-blade-leatherman-usa-no-dates
 price: 59.00
 condition: Pre-Owned
 image: /assets/images/product-placeholder.jpg
-ebay_link: https://www.ebay.com/itm/284956707234?itmmeta=01JNZ4ZNYVX63GN7C1FMCECJS4&hash=item4258be49a2:g:dd8AAOSwXAVjFn~D&itmprp=enc%3AAQAKAAAAwFkggFvd1GGDu0w3yXCmi1faCHmAFV9ILJvG%2FRtZ8yP8Vt7Obv904P92P15DqN57WWcdbD874UClbz1cXvaZ54mEREgrvPHrmn9tfwtx6AHMLI3nCf%2BL2p%2FzFl17kOAkNjScPoxLH7oJ4qty7rLU%2FtFv5iIHsPNmMW3AVblJ2U%2BBX%2BrnrdRmxouotXnyDJtw%2BobwW7sJb%2F9KQfv9I99VZDHFoCRpBHTq7%2BuYVzXmEf0b1aER9M47ADZ4MvJB4e%2BE3A%3D%3D%7Ctkp%3ABk9SR8Tf_uSvZQ
+ebay_link: https://www.ebay.com/itm/284956707234?itmmeta=01JNZ63V0NVM3TMNDS4X0QK3TF&hash=item4258be49a2:g:dd8AAOSwXAVjFn~D&itmprp=enc%3AAQAKAAAA4FkggFvd1GGDu0w3yXCmi1d93voGo48MzRsU3yCog5C1PzVMILpMBi4%2BhSPu5GWLEHmrI02l92RZjZ48P0KWdH6xkZM1oLdRcoA3xClM86wBQ94hWxPhe8EAuXpC7%2BG%2BkUCOnx%2BixUSMl3vE0hdH3ufmCoGPeOd6k%2BlsRTvoiYnJHjIJ1XejH9703uUgGTXkiBU88hpP5p%2BesFL532CFxPmD3wlHMDYRdTl3Ec0s6Ff9tOgJn4W2I0Y3ZzaZbOwnyFqoJq%2BwO9tzdwWG7NTwx2Fc7qc8B%2Bd0OrAZmsuG3Vd%2B%7Ctkp%3ABk9SR7awj-avZQ
 features:
   - Stainless steel construction
   - Compact and portable design
   - Multiple tools in one
   - Lifetime warranty
+last_updated: 2025-03-09 23:48:22
 ---
 
 Late-80's Leatherman PST A+ Near Mint Saber Clip Blade "LEATHERMAN USA" No Dates - A reliable Leatherman multi-tool for everyday tasks.

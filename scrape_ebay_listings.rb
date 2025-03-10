@@ -12,6 +12,14 @@ def slugify(title)
   title.downcase.strip.gsub(/[^\w\s-]/, '').gsub(/\s+/, '-')
 end
 
+# Function to sanitize a title for YAML front matter
+# This ensures quotes are properly handled to prevent YAML parsing errors
+def sanitize_title_for_yaml(title)
+  # Replace double quotes within the title with single quotes to avoid YAML parsing issues
+  sanitized = title.gsub(/"([^"]*)"/) { "'#{$1}'" }
+  sanitized
+end
+
 # Function to download an image and save it to assets/images
 def download_image(image_url, slug)
   begin
@@ -180,6 +188,11 @@ FileUtils.mkdir_p('assets/images/leatherman') unless Dir.exist?('assets/images/l
 ebay_store_url = "https://www.ebay.com/sch/i.html?_nkw=&_in_kw=1&_ex_kw=&_sacat=0&_udlo=&_udhi=&_ftrt=901&_ftrv=1&_sabdlo=&_sabdhi=&_samilow=&_samihi=&_sadis=15&_stpos=94531-8437&_sargn=-1%26saslc%3D1&_salic=1&_fss=1&_fsradio=%26LH_SpecificSeller%3D1&_saslop=1&_sasl=Goodandclean.shop&_sop=12&_dmd=1&_ipg=50"
 listings = fetch_ebay_listings(ebay_store_url)
 
+# Initialize counters for reporting
+new_listings_count = 0
+updated_listings_count = 0
+removed_listings_count = 0
+
 # Inform if no listings were found
 if listings.empty?
   puts "No listings were found from your eBay store."
@@ -191,12 +204,43 @@ if listings.empty?
   exit
 end
 
+# Get existing listings
+existing_files = Dir.glob('_leatherman/*.md')
+existing_slugs = existing_files.map { |file| File.basename(file, '.md') }
+puts "Found #{existing_slugs.size} existing product files"
+
+# Create a hash of current listings for easy lookup
+current_listings_by_slug = {}
+listings.each do |listing|
+  slug = slugify(listing[:title])
+  current_listings_by_slug[slug] = listing
+end
+
+# Find and remove listings that no longer exist
+existing_slugs.each do |slug|
+  unless current_listings_by_slug.key?(slug)
+    file_path = File.join('_leatherman', "#{slug}.md")
+    puts "Removing sold/inactive listing: #{file_path}"
+    File.delete(file_path) if File.exist?(file_path)
+    
+    # Also remove the image if it exists
+    image_path = File.join('assets/images/leatherman', "#{slug}.jpg")
+    File.delete(image_path) if File.exist?(image_path)
+    
+    removed_listings_count += 1
+  end
+end
+
 # Process each listing
 listings.each do |listing|
   puts "\nProcessing listing: #{listing[:title]}"
   
   # Generate slug from title
   slug = slugify(listing[:title])
+  
+  # Check if this is a new listing or an update
+  file_path = File.join('_leatherman', "#{slug}.md")
+  is_new_listing = !File.exist?(file_path)
   
   # Download image or use placeholder if image URL is 'placeholder' or download fails
   if listing[:image_url] == "placeholder"
@@ -261,10 +305,13 @@ DESCRIPTION
   end
   
   # Create content for the product file
+  # Sanitize the title to prevent YAML parsing errors
+  sanitized_title = sanitize_title_for_yaml(listing[:title])
+  
   content = <<~CONTENT
 ---
 layout: leatherman
-title: "#{listing[:title]}"
+title: "#{sanitized_title}"
 slug: #{slug}
 price: #{listing[:price]}
 condition: #{listing[:condition]}
@@ -272,17 +319,28 @@ image: #{image_path}
 ebay_link: #{listing[:link]}
 features:
 #{features.map { |feature| "  - #{feature}" }.join("\n")}
+last_updated: #{Time.now.strftime('%Y-%m-%d %H:%M:%S')}
 ---
 
 #{description}
 CONTENT
 
   # Write the product file
-  file_path = File.join('_leatherman', "#{slug}.md")
   File.write(file_path, content)
   
-  puts "Created product file at: #{file_path}"
+  if is_new_listing
+    puts "Created new product file at: #{file_path}"
+    new_listings_count += 1
+  else
+    puts "Updated existing product file at: #{file_path}"
+    updated_listings_count += 1
+  end
 end
 
-puts "\nAll eBay listings processed!"
-puts "#{listings.size} products were created." 
+# Print summary
+puts "\nUpdate summary:"
+puts "#{new_listings_count} new listings added"
+puts "#{updated_listings_count} existing listings updated"
+puts "#{removed_listings_count} sold/inactive listings removed"
+puts "#{new_listings_count + updated_listings_count + removed_listings_count} total changes"
+puts "All eBay listings processed!" 

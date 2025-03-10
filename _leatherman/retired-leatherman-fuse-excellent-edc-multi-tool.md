@@ -5,12 +5,13 @@ slug: retired-leatherman-fuse-excellent-edc-multi-tool
 price: 44.99
 condition: Pre-Owned
 image: /assets/images/product-placeholder.jpg
-ebay_link: https://www.ebay.com/itm/286350772799?itmmeta=01JNZ4ZNYVF5ADMENT29X8C0F0&hash=item42abd60a3f:g:HqYAAOSw-vlnuQGI&itmprp=enc%3AAQAKAAAAwFkggFvd1GGDu0w3yXCmi1fQDLLV7rdeQJ%2F67n3ApfYOwh6zE2WyrqIR7mXcCLAqT5uXXkuS4Khs66BxWYJj9NFDSdI58ApPVtI0LgaEz70BvYofOFI%2FcVhb7LUPh2YvUQr3x%2FYYzBiIjvU%2FfqOiVJpZJxDtlyrlIiRJYQE9tU1MJqq1IaGyEDfHGyD5Vk5FgHsczQAidxCb6Z%2BWIe2bKKBxOy9H4J%2FYnQOdyGSwDlU%2FSTtRuf%2Faedp%2FyXGUfPrQyQ%3D%3D%7Ctkp%3ABk9SR8Tf_uSvZQ
+ebay_link: https://www.ebay.com/itm/286350772799?itmmeta=01JNZ63V0NF58GP3YJS355DTDJ&hash=item42abd60a3f:g:HqYAAOSw-vlnuQGI&itmprp=enc%3AAQAKAAAAwFkggFvd1GGDu0w3yXCmi1fQDLLV7rdeQJ%2F67n3ApfYOwh6zE2WyrqIR7mXcCLAqT9PLlwyNuIrFBAGaLI9zVuZQ9s4su%2FIN%2BOmz9YeXOB0W3tKiQNoS%2B52282qyzLG3MEQRnCO4t70UYPxT%2FtNipcMHGt%2Bt6vSxH7q19q%2FYwrKqBVVERapoAh2Akx0FST%2Fzr%2BE8e1wylPy52DY7oEOwht8%2F6nVINCYyfHhk1V%2FHJKw%2FsfaZPAnYHTSqi9%2FyCZBx0g%3D%3D%7Ctkp%3ABk9SR7awj-avZQ
 features:
   - Stainless steel construction
   - Compact and portable design
   - Multiple tools in one
   - Lifetime warranty
+last_updated: 2025-03-09 23:48:22
 ---
 
 Retired Leatherman Fuse — Excellent EDC Multi-Tool - A reliable Leatherman multi-tool for everyday tasks.

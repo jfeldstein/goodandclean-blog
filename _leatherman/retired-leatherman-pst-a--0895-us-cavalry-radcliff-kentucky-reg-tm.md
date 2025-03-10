@@ -1,16 +1,17 @@
 ---
 layout: leatherman
-title: "Retired Leatherman PST A- "0895" "US CAVALRY RADCLIFF, KENTUCKY" REG TM"
+title: "Retired Leatherman PST A- '0895' 'US CAVALRY RADCLIFF, KENTUCKY' REG TM"
 slug: retired-leatherman-pst-a--0895-us-cavalry-radcliff-kentucky-reg-tm
 price: 44.00
 condition: Pre-Owned
 image: /assets/images/product-placeholder.jpg
-ebay_link: https://www.ebay.com/itm/285967104330?itmmeta=01JNZ4ZNYVQBBZX7YNRN4DM8XN&hash=item4294f7b94a:g:7QUAAOSwKCRmmUxs&itmprp=enc%3AAQAKAAAA4FkggFvd1GGDu0w3yXCmi1evYgptwOpmq%2FYlR6a5mBn1Jt0f6E%2B11jxOYgz7kjXS%2FkqNx4BOZUivtXQJ5kfFTohHM%2BVIALxlZWU9Rk2hSAsOhC9SzSlpv0VkhAaG19q3%2FUpMfuHN07oIG86cdpbtHw1fwOOQqoBSafejpJtr0zMlTcTbkUsPGSQcRhtgM%2FJOeowrxuK3xz85Qf85XhHCZRA%2B%2BIPpXuWNebm50NbFW55ct55iYXtaoQCeEPTIHCCb40M7lAB5LaDBUrfzw8Wm84tOEpfra25wF2%2BL%2BiJSccqC%7Ctkp%3ABk9SR8Tf_uSvZQ
+ebay_link: https://www.ebay.com/itm/285967104330?itmmeta=01JNZ63V0NPABDRGY0QNSSDG80&hash=item4294f7b94a:g:7QUAAOSwKCRmmUxs&itmprp=enc%3AAQAKAAAA4FkggFvd1GGDu0w3yXCmi1evYgptwOpmq%2FYlR6a5mBn1Jt0f6E%2B11jxOYgz7kjXS%2FkqNx4BOZUivtXQJ5kfFTohHM%2BVIALxlZWU9Rk2hSAsOhC9SzSlpv0VkhAaG19q3%2FUpMfuHN07oIG86cdpbtHw0aTQB%2Bn%2FikXwquLVHeBIofoiKDnIztVcPZqbEUlVzUCVsk11UeSt5iaQWdRCnn8AENawJWe1gZwZCAfWlE59kyqUPQLnp2T1Du6mO%2FPrdL0qWsjB2v3i%2F33SCMuOfJ%2B7PvsMgK5%2BevrUbJ%2BIU%2Fhp4k%7Ctkp%3ABk9SR7awj-avZQ
 features:
   - Stainless steel construction
   - Compact and portable design
   - Multiple tools in one
   - Lifetime warranty
+last_updated: 2025-03-09 23:48:22
 ---
 
 Retired Leatherman PST A- "0895" "US CAVALRY RADCLIFF, KENTUCKY" REG TM - A reliable Leatherman multi-tool for everyday tasks.

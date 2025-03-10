@@ -5,12 +5,13 @@ slug: leatherman-micra-rare-blue-plastic-a-
 price: 24.99
 condition: Pre-Owned
 image: /assets/images/product-placeholder.jpg
-ebay_link: https://www.ebay.com/itm/284986210996?itmmeta=01JNZ4ZNYVV878BR5EAPENN5BA&hash=item425a807ab4:g:AwEAAOSwIEJjN7zE&itmprp=enc%3AAQAKAAAA4FkggFvd1GGDu0w3yXCmi1dZchSEAGrQubOqA2yuq9eZ6ASCCAG6ysT7VjVCw59mezYUfyLLcO4osv6L9NSyRF5XDGDOpcQ9ZUjGR3opZamIvr7R8vhnphHlOPYm3enz5r2s7wFSdIAm7GfFWMR1pokfEcVksh2VvdY%2FUoefm%2BFUSAd4CK336EnkTYwL2QpnbAkM2lKh3RhcDA9QAgIr01W6BtLPusnE99Okkm%2BsAAg6xPisGytB2ZbGYSJiW2BOJ7WfkIvKn7KoyygqiLuhQ2bY5b3PN3ZaR5ZrhMYgd3pg%7Ctkp%3ABk9SR8Tf_uSvZQ
+ebay_link: https://www.ebay.com/itm/284986210996?itmmeta=01JNZ63V0N0X0930N457GZR53C&hash=item425a807ab4:g:AwEAAOSwIEJjN7zE&itmprp=enc%3AAQAKAAAAwFkggFvd1GGDu0w3yXCmi1fkACtRMedHrqvKSerm0QNFF0DdqIvC7kJWWKg0CrcLzIBPiv%2Fdsn04eEuMTqipO9pI%2BjUivJiek6cF64Jo46ThNIO1iDFRWjr%2BC6lKNJI9vNyaSGKc6C%2ByGnveLEAKh8GNHvOb5RQvywyVWePFGKHrKkJNWTQoItHPWLoe3hxtqaYOFQEORwT5Uj5rvTi12R0nvIh0r1yiW0T3bQ4ml%2FHMhToZs9BruQJYtrVvRSWkxw%3D%3D%7Ctkp%3ABk9SR7awj-avZQ
 features:
   - Stainless steel construction
   - Compact and portable design
   - Multiple tools in one
   - Lifetime warranty
+last_updated: 2025-03-09 23:48:22
 ---
 
 Leatherman Micra Rare Blue Plastic A- - A reliable Leatherman multi-tool for everyday tasks.

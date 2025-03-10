@@ -11,12 +11,31 @@ The site includes automation for keeping eBay product listings up-to-date with y
 1. The `scrape_ebay_listings.rb` script fetches the current listings from your eBay store
 2. It creates Markdown files for each product in the `_leatherman` directory
 3. Each product page includes the correct eBay link, redirecting visitors to your eBay listing
+4. The script also removes listings that are no longer available (sold items)
 
 ### Setting Up Automated Updates
 
-To keep your product listings in sync with your eBay store, you can set up a scheduled task:
+To keep your product listings in sync with your eBay store, you can use GitHub Actions:
 
-#### macOS/Linux (Cron)
+#### GitHub Actions (Recommended)
+
+The repository includes a GitHub Actions workflow that automatically:
+- Runs every hour to check for new/updated/sold listings
+- Commits any changes back to the repository
+- Requires no manual setup beyond pushing the code to GitHub
+
+The workflow file is located at `.github/workflows/update-ebay-listings.yml`.
+
+To manually trigger the update process, you can:
+1. Go to the "Actions" tab in your GitHub repository
+2. Select the "Update eBay Listings" workflow
+3. Click "Run workflow"
+
+#### Alternative: Local Scheduled Tasks
+
+If you prefer to run the updates locally instead of using GitHub Actions:
+
+##### macOS/Linux (Cron)
 
 1. Open your crontab for editing:
    ```
@@ -30,7 +49,7 @@ To keep your product listings in sync with your eBay store, you can set up a sch
 
 3. Save and exit
 
-#### Windows (Task Scheduler)
+##### Windows (Task Scheduler)
 
 1. Open Task Scheduler
 2. Create a new task to run `update_listings.sh` via WSL or Git Bash

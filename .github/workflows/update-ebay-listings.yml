@@ -37,21 +37,23 @@ jobs:
         echo "Update completed at $(date)" >> logs/update_log.txt
         echo "=======================================" >> logs/update_log.txt
       
-    - name: Check for changes
+    - name: Check for product changes
       id: check_changes
       run: |
-        git status --porcelain
-        echo "has_changes=$(git status --porcelain | wc -l | xargs)" >> $GITHUB_OUTPUT
+        # Check specifically for changes in product files, not logs
+        CHANGES=$(git status --porcelain _leatherman/ assets/images/leatherman/ | wc -l | xargs)
+        echo "Product changes detected: $CHANGES"
+        echo "has_changes=$CHANGES" >> $GITHUB_OUTPUT
       
-    - name: Commit and push if there are changes
+    - name: Commit and push if there are product changes
       if: steps.check_changes.outputs.has_changes != '0'
       run: |
         # Configure Git
         git config --local user.email "actions@github.com"
         git config --local user.name "GitHub Actions"
         
-        # Add changes
-        git add _leatherman/ assets/images/leatherman/ logs/update_log.txt
+        # Add only product-related changes, not logs
+        git add _leatherman/ assets/images/leatherman/
         
         # Commit with timestamp
         git commit -m "Auto-update eBay listings - $(date)"

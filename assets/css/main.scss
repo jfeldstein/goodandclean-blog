@@ -224,7 +224,7 @@ p {
     font-weight: 600;
     
     &:hover {
-      background-color: color.adjust($primary-color, $lightness: -10%);
+      background-color: darken($primary-color, 10%);
       text-decoration: none;
     }
   }
@@ -243,7 +243,9 @@ p {
       background-color: #3a86ff;
       
       &:hover {
-        background-color: color.adjust(#3a86ff, $lightness: -10%);
+        background-color: darken(#3a86ff, 10%);
+        color: white;
+        text-decoration: none;
       }
     }
   }
@@ -302,7 +304,7 @@ p {
     transition: all 0.3s ease;
     
     &:hover {
-      background-color: color.adjust($primary-color, $lightness: -10%);
+      background-color: darken($primary-color, 10%);
       text-decoration: none;
     }
   }
@@ -385,7 +387,7 @@ p {
           transition: all 0.3s ease;
           
           &:hover {
-            background-color: color.adjust($primary-color, $lightness: -10%);
+            background-color: darken($primary-color, 10%);
             text-decoration: none;
           }
         }

@@ -1,17 +1,31 @@
-title: Recommended Products Blog
+title: Good&Clean.shop
 description: Reviews and recommendations for the best products available
-baseurl: "/Recommended-Products-Blog" # the subpath of your site, typically /repository-name
-url: "https://USERNAME.github.io" # Replace USERNAME with your GitHub username
+baseurl: "/goodandclean.shop" # the subpath of your site, typically /repository-name
+url: "https://jfeldstein.github.io" # Replace USERNAME with your GitHub username
 
 # Build settings
 markdown: kramdown
 permalink: pretty
+highlighter: rouge
+
+# GitHub Pages settings
+github: [metadata]
+encoding: UTF-8
+kramdown:
+  input: GFM
+  hard_wrap: false
+future: true
+jailed: false
+gfm_quirks: paragraph_end
 
 # Collections
 collections:
   products:
     output: true
     permalink: /products/:path/
+  leatherman:
+    output: true
+    permalink: /leatherman/:path/
 
 # Theme settings - using a minimal theme compatible with GitHub Pages
 theme: minima
@@ -32,9 +46,18 @@ defaults:
       path: ""
     values:
       layout: "default"
+  - scope:
+      path: ""
+      type: "leatherman"
+    values:
+      layout: "leatherman"
 
 # Amazon affiliate ID (replace with your actual ID)
 amazon_affiliate_id: YOUR-AFFILIATE-ID
+
+# eBay store information
+ebay_store: Goodandclean.shop
+ebay_partner_id: 5338889850
 
 # Exclude files from processing
 exclude:
@@ -44,22 +67,4 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - vendor/
-
-# eBay store information
-ebay_store: Goodandclean.shop
-ebay_partner_id: 5338889850
-
-# Collections
-collections:
-  leatherman:
-    output: true
-    permalink: /leatherman/:path/
-
-# Default front matter
-defaults:
-  - 
-    scope:
-      path: ""
-      type: "leatherman"
-    values:
-      layout: "leatherman" 
+  - github-pages-setup.md 

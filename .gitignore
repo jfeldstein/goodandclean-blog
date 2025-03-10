@@ -22,5 +22,4 @@ update_log.txt
 *.log
 
 # Ruby environment
-.ruby-version
-.ruby-gemset 
+.ruby-gemset % 

@@ -12,6 +12,20 @@ def slugify(title)
   title.downcase.strip.gsub(/[^\w\s-]/, '').gsub(/\s+/, '-')
 end
 
+# Function to clean eBay URLs by removing dynamic parts
+def clean_ebay_url(url)
+  # Check if it's an eBay item URL
+  if url.include?('ebay.com/itm/')
+    # Extract the item ID - handle both numeric-only IDs and alphanumeric IDs
+    if match = url.match(/ebay\.com\/itm\/([0-9a-zA-Z]+)/)
+      item_id = match[1]
+      return "https://www.ebay.com/itm/#{item_id}"
+    end
+  end
+  # Return original URL if it doesn't match the pattern
+  url
+end
+
 # Function to sanitize a title for YAML front matter
 # This ensures quotes are properly handled to prevent YAML parsing errors
 def sanitize_title_for_yaml(title)
@@ -107,6 +121,8 @@ def fetch_ebay_listings(store_url)
       price_text = price_element.text.strip
       price = price_text.match(/\$([0-9.]+)/)&.[](1) || "0.00"
       link = link_element.attr('href').value
+      # Clean the eBay URL to remove dynamic parts
+      link = clean_ebay_url(link)
       condition = condition_element.text.strip
       
       # Allow missing images - just log a warning
@@ -152,6 +168,8 @@ def fetch_ebay_listings(store_url)
         price_text = price_element.text.strip
         price = price_text.match(/\$([0-9.]+)/)&.[](1) || "0.00"
         link = link_element.attr('href').value
+        # Clean the eBay URL to remove dynamic parts
+        link = clean_ebay_url(link)
         condition = condition_element.text.strip
         
         # If image is missing, use a placeholder

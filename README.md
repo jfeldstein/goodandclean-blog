@@ -1,6 +1,49 @@
-# Good&Clean Blog
+# Recommended Products Blog
 
-This is a Jekyll-based blog for Good&Clean products, featuring Amazon affiliate recommendations and eBay store listings.
+A curated collection of product recommendations hosted on GitHub Pages.
+
+## Website
+
+Visit the live site at: https://USERNAME.github.io/Recommended-Products-Blog (replace USERNAME with your GitHub username)
+
+## Adding Products
+
+Products can be added via the `add_product.rb` script:
+
+```bash
+# Interactive mode
+ruby add_product.rb
+
+# Non-interactive mode
+ruby add_product.rb --url https://www.amazon.com/dp/XXXXXXXXXX --non-interactive
+
+# Process multiple URLs
+./process_urls.sh
+```
+
+## GitHub Pages Setup
+
+This site is configured to deploy automatically to GitHub Pages when changes are pushed to the main branch:
+
+1. The GitHub Actions workflow in `.github/workflows/github-pages.yml` builds and deploys the site
+2. The site is published to the `gh-pages` branch
+3. GitHub serves the content from this branch at your GitHub Pages URL
+
+## Local Development
+
+To run the site locally:
+
+1. Install dependencies: `bundle install`
+2. Start the Jekyll server: `bundle exec jekyll serve`
+3. Visit `http://localhost:4000/Recommended-Products-Blog/` in your browser
+
+## Updating Configuration
+
+To update the site configuration, edit the `_config.yml` file:
+
+- Update `baseurl` with your repository name
+- Update `url` with your GitHub Pages URL
+- Update `amazon_affiliate_id` with your Amazon Affiliate ID
 
 ## Automated eBay Listings
 
@@ -102,25 +145,6 @@ The eBay listings are dynamically fetched from your eBay store page. If you need
    - Set your `github_username`
    - Update the `amazon_affiliate_id` with your Amazon Affiliate ID
 
-## Adding Products
-
-You can add products in two ways:
-
-### Using the Script (Recommended)
-
-Run the script:
-
-```
-./add_product.rb
-```
-
-Follow the prompts to enter the required information.
-
-### Manually
-
-1. Create a new Markdown file in the `_products` directory
-2. Use the proper front matter template
-
 ## Running Locally
 
 To run the site locally:
@@ -129,22 +153,4 @@ To run the site locally:
 bundle exec jekyll serve
 ```
 
-Then visit `http://localhost:4000` in your browser.
-
-## Deploying to GitHub Pages
-
-1. Push your changes to GitHub
-2. Go to your repository settings
-3. Under "GitHub Pages", select the branch you want to deploy from
-4. Your site will be available at `https://jfeldstein.github.io/goodandclean-blog/`
-
-## Amazon Affiliate Program
-
-Remember to follow Amazon's affiliate program rules:
-- Disclose your affiliate relationship (already included in the footer and about page)
-- Don't use affiliate links in emails or offline materials
-- Don't make false claims about products
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
+Then visit `

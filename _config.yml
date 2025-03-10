@@ -1,19 +1,49 @@
-title: Good&Clean
-email: jfeldstein@gmail.com
-description: >-
-  Your destination for honest reviews and recommendations of quality products from Good&Clean.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
-github_username: jfeldstein
+title: Recommended Products Blog
+description: Reviews and recommendations for the best products available
+baseurl: "/Recommended-Products-Blog" # the subpath of your site, typically /repository-name
+url: "https://USERNAME.github.io" # Replace USERNAME with your GitHub username
 
 # Build settings
 markdown: kramdown
-# theme: minima  # Commented out to use our custom theme
-plugins:
-  - jekyll-feed
+permalink: pretty
 
-# Amazon affiliate ID
-amazon_affiliate_id: goodandclean-20
+# Collections
+collections:
+  products:
+    output: true
+    permalink: /products/:path/
+
+# Theme settings - using a minimal theme compatible with GitHub Pages
+theme: minima
+
+# Default layouts
+defaults:
+  - scope:
+      path: ""
+      type: "products"
+    values:
+      layout: "product"
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+    values:
+      layout: "default"
+
+# Amazon affiliate ID (replace with your actual ID)
+amazon_affiliate_id: YOUR-AFFILIATE-ID
+
+# Exclude files from processing
+exclude:
+  - add_product.rb
+  - process_urls.sh
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor/
 
 # eBay store information
 ebay_store: Goodandclean.shop
@@ -21,9 +51,6 @@ ebay_partner_id: 5338889850
 
 # Collections
 collections:
-  products:
-    output: true
-    permalink: /products/:path/
   leatherman:
     output: true
     permalink: /leatherman/:path/
@@ -33,23 +60,6 @@ defaults:
   - 
     scope:
       path: ""
-      type: "products"
-    values:
-      layout: "product"
-  -
-    scope:
-      path: ""
       type: "leatherman"
     values:
-      layout: "leatherman"
-  -
-    scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: "post"
-  -
-    scope:
-      path: ""
-    values:
-      layout: "default" 
+      layout: "leatherman" 

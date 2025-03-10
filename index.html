@@ -10,7 +10,7 @@ title: Home
   </section>
 
   <section class="featured-products">
-    <h2>Featured Products</h2>
+    <h2>Featured Recommendations</h2>
     <div class="products-grid">
       {% for product in site.products limit:6 %}
       <div class="product-card">
@@ -27,7 +27,15 @@ title: Home
       {% endfor %}
     </div>
     <div class="view-all">
-      <a href="{{ '/products' | relative_url }}" class="btn">View All Products</a>
+      <a href="{{ '/products' | relative_url }}" class="btn">View All Recommendations</a>
+    </div>
+  </section>
+
+  <section class="leatherman-section">
+    <h2>Leatherman Tools</h2>
+    <p>Browse our collection of quality Leatherman tools available directly from our store.</p>
+    <div class="view-all">
+      <a href="{{ '/leatherman' | relative_url }}" class="btn">Shop Leatherman</a>
     </div>
   </section>
 

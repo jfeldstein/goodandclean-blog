@@ -3,7 +3,7 @@ layout: product
 title: "Black Tactical Backpack, Military Backpack, Molle Backpack"
 slug: black-tactical-backpack-military-backpack-molle-backpack
 category: Sports & Outdoors
-image: /assets/images/product-placeholder.jpg
+image: /assets/images/black-tactical-backpack-military-backpack-molle-backpack.jpg
 amazon_link: https://www.amazon.com/dp/B08JSTP3HL/
 pros:
   - Durable

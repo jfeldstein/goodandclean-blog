@@ -134,7 +134,8 @@ p {
 
 .featured-products,
 .latest-posts,
-.about-section {
+.about-section,
+.leatherman-section {
   margin-bottom: 3rem;
   
   h2 {
@@ -150,6 +151,18 @@ p {
       background-color: $primary-color;
       margin: 0.5rem auto 0;
     }
+  }
+}
+
+// Leatherman section
+.leatherman-section {
+  background-color: #f0f5ff;
+  padding: 3rem 0;
+  text-align: center;
+  
+  p {
+    max-width: 800px;
+    margin: 0 auto 1.5rem;
   }
 }
 
@@ -195,6 +208,13 @@ p {
     font-size: 0.9rem;
   }
   
+  .product-price {
+    padding: 0 1rem 1rem;
+    color: #e63946;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  
   .btn {
     display: block;
     text-align: center;
@@ -211,6 +231,21 @@ p {
   
   .btn-sm {
     padding: 0.5rem;
+  }
+}
+
+// Leatherman grid
+.leatherman-grid {
+  .product-card {
+    border-color: #3a86ff;
+    
+    .btn {
+      background-color: #3a86ff;
+      
+      &:hover {
+        background-color: color.adjust(#3a86ff, $lightness: -10%);
+      }
+    }
   }
 }
 
@@ -303,6 +338,15 @@ p {
       .product-rating {
         color: #f5a623;
       }
+      
+      .product-price {
+        color: #e63946;
+        font-weight: 600;
+      }
+      
+      .product-condition {
+        font-style: italic;
+      }
     }
   }
   
@@ -349,43 +393,43 @@ p {
     }
   }
   
+  .product-pros-cons,
+  .product-features {
+    background-color: $light-gray;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    
+    h3 {
+      margin-bottom: 1rem;
+      position: relative;
+      
+      &:after {
+        content: '';
+        display: block;
+        width: 30px;
+        height: 3px;
+        background-color: $primary-color;
+        margin-top: 0.5rem;
+      }
+    }
+    
+    ul {
+      list-style-position: inside;
+      
+      li {
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+  
   .product-pros-cons {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
-    margin-bottom: 2rem;
     
     @media (max-width: 768px) {
       grid-template-columns: 1fr;
-    }
-    
-    .product-pros,
-    .product-cons {
-      background-color: $light-gray;
-      padding: 1.5rem;
-      border-radius: 8px;
-      
-      h3 {
-        margin-bottom: 1rem;
-        position: relative;
-        
-        &:after {
-          content: '';
-          display: block;
-          width: 30px;
-          height: 3px;
-          background-color: $primary-color;
-          margin-top: 0.5rem;
-        }
-      }
-      
-      ul {
-        list-style-position: inside;
-        
-        li {
-          margin-bottom: 0.5rem;
-        }
-      }
     }
     
     .product-pros h3:after {
@@ -471,5 +515,12 @@ p {
       background-color: $primary-color;
       margin: 0.5rem auto 0;
     }
+  }
+  
+  .subtitle {
+    color: #555;
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 1rem auto 0;
   }
 } 

@@ -15,11 +15,17 @@ plugins:
 # Amazon affiliate ID
 amazon_affiliate_id: goodandclean-20
 
+# eBay store information
+ebay_store: Goodandclean.shop
+
 # Collections
 collections:
   products:
     output: true
     permalink: /products/:path/
+  leatherman:
+    output: true
+    permalink: /leatherman/:path/
 
 # Default front matter
 defaults:
@@ -29,6 +35,12 @@ defaults:
       type: "products"
     values:
       layout: "product"
+  -
+    scope:
+      path: ""
+      type: "leatherman"
+    values:
+      layout: "leatherman"
   -
     scope:
       path: ""

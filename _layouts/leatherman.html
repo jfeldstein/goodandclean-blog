@@ -1,0 +1,44 @@
+---
+layout: default
+---
+
+<article class="product">
+  <div class="product-header">
+    <h1 class="product-title">{{ page.title }}</h1>
+    <div class="product-meta">
+      <span class="product-price">${{ page.price }}</span>
+      <span class="product-condition">Condition: {{ page.condition }}</span>
+    </div>
+  </div>
+
+  <div class="product-content">
+    <div class="product-image">
+      {% if page.image %}
+        <img src="{{ page.image | relative_url }}" alt="{{ page.title }}">
+      {% else %}
+        <img src="{{ '/assets/images/product-placeholder.jpg' | relative_url }}" alt="{{ page.title }}">
+      {% endif %}
+    </div>
+
+    <div class="product-description">
+      {{ content }}
+      
+      <div class="product-cta">
+        <a href="{{ page.ebay_link }}" class="btn btn-primary" target="_blank" rel="nofollow">
+          View on eBay
+        </a>
+      </div>
+    </div>
+  </div>
+
+  {% if page.features %}
+  <div class="product-features">
+    <h3>Features</h3>
+    <ul>
+      {% for feature in page.features %}
+      <li>{{ feature }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+</article> 

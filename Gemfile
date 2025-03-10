@@ -30,3 +30,9 @@ gem "down", "~> 5.4"
 
 # Gem for parsing HTML
 gem "nokogiri", "~> 1.15"
+
+# Pin activesupport to a version compatible with Ruby 3.1.x
+gem "activesupport", "~> 7.0.8"
+
+# Required for Ruby 3.4
+gem "bigdecimal"

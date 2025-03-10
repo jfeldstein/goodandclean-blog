@@ -31,14 +31,6 @@ jobs:
           MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
           MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
 
-      - name: Upload report as artifact
-        if: ${{ always() }}
-        uses: actions/upload-artifact@v3
-        with:
-          name: link-check-report
-          path: link_check_report.json
-          if-no-files-found: ignore
-
       - name: Set up Email Notifications for Workflow Failures
         if: failure()
         run: |

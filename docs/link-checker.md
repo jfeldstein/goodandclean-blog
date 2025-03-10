@@ -10,9 +10,8 @@ The link checker:
 2. Scans all product files and blog posts for Amazon links
 3. Checks each link to verify it's accessible
 4. Automatically retries links that return 5xx errors (server errors)
-5. Generates a report of any problematic links
-6. Emails a notification to jfeldstein@gmail.com if issues are found
-7. Saves a JSON report as a GitHub Actions artifact for reference
+5. Generates a comprehensive report of any problematic links
+6. Emails a detailed notification with all broken links to jfeldstein@gmail.com
 
 ## How It Works
 
@@ -20,8 +19,8 @@ The system uses a GitHub Actions workflow (`.github/workflows/check-amazon-links
 
 - Runs a Ruby script (`scripts/check_amazon_links.rb`) to find and check all Amazon product links
 - Retries any links that return server errors (5xx) up to 5 times with exponential backoff
-- Uses Mailgun's API to send email reports when issues are detected
-- Uploads a JSON report as an artifact for future reference
+- Uses Mailgun's API to send detailed email reports when issues are detected
+- Includes comprehensive troubleshooting information in the email report
 
 ## Setting Up Email Notifications
 
@@ -49,10 +48,23 @@ You can manually trigger the link checker at any time:
 
 ## Understanding the Reports
 
-The email report includes:
-- The URL that's having issues
-- The HTTP status code returned (or "Error" if it couldn't connect)
-- A description of the error
+The email report includes several sections:
+
+### Summary Section
+- Total number of problematic links found
+- Breakdown of issues by status code (e.g., 404, 503, etc.)
+
+### Detailed Report
+- Clickable URLs of problematic links
+- HTTP status codes or error messages
+- Color-coded rows for easy identification of error types:
+  - Red: Connection errors
+  - Yellow: Server errors (5xx)
+  - Orange: Client errors (4xx)
+
+### Troubleshooting Guide
+- Explanation of common error codes
+- Suggestions for how to resolve different types of issues
 
 Common status codes:
 - 404: Not Found - The product no longer exists

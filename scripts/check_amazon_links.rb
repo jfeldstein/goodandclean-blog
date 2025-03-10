@@ -11,20 +11,60 @@ def send_email(report)
   # Initialize Mailgun client
   mailgun = Mailgun::Client.new(ENV['MAILGUN_API_KEY'])
   
-  # Create HTML email body
-  html_body = "<h1>Amazon Link Check Report</h1>
-           <p>The following links have issues:</p>
-           <table border='1' cellpadding='5'>
-           <tr><th>URL</th><th>Status</th><th>Error</th></tr>
-           #{report.map { |link| "<tr><td>#{link[:url]}</td><td>#{link[:status]}</td><td>#{link[:error]}</td></tr>" }.join}
-           </table>
-           <p>Please review these links and update them if necessary.</p>"
+  # Create a more detailed HTML report
+  html_body = "<h1>Amazon Link Check Report</h1>"
+  
+  # Summary section
+  html_body += "<h2>Summary</h2>"
+  html_body += "<p>Found #{report.size} problematic links out of all links checked.</p>"
+  
+  # Group issues by status code
+  status_groups = report.group_by { |item| item[:status] || 'Connection Error' }
+  
+  html_body += "<h3>Issues by status:</h3>"
+  html_body += "<ul>"
+  status_groups.each do |status, items|
+    html_body += "<li><strong>#{status}:</strong> #{items.size} links</li>"
+  end
+  html_body += "</ul>"
+  
+  # Detailed table of all issues
+  html_body += "<h2>Detailed Report</h2>"
+  html_body += "<table border='1' cellpadding='5' style='border-collapse: collapse;'>"
+  html_body += "<tr style='background-color: #f2f2f2;'><th>URL</th><th>Status</th><th>Error</th></tr>"
+  
+  report.each do |link|
+    # Determine row color based on status
+    row_color = case
+                when link[:status].nil? then "#ffcccc" # Connection errors - light red
+                when link[:status] >= 500 then "#ffffcc" # Server errors - light yellow
+                when link[:status] >= 400 then "#ffddcc" # Client errors - light orange
+                else "#ffffff" # Other (shouldn't occur) - white
+                end
+    
+    html_body += "<tr style='background-color: #{row_color};'>"
+    html_body += "<td><a href='#{link[:url]}'>#{link[:url]}</a></td>"
+    html_body += "<td>#{link[:status] || 'Error'}</td>"
+    html_body += "<td>#{link[:error] || 'N/A'}</td>"
+    html_body += "</tr>"
+  end
+  html_body += "</table>"
+  
+  # Add troubleshooting information
+  html_body += "<h2>Troubleshooting</h2>"
+  html_body += "<ul>"
+  html_body += "<li><strong>404 Not Found:</strong> The product may have been removed. Consider finding a replacement product.</li>"
+  html_body += "<li><strong>503 Service Unavailable:</strong> Amazon may be temporarily blocking requests or experiencing issues. Retry manually.</li>"
+  html_body += "<li><strong>Connection Error:</strong> Could not connect to the server. Possible network issues or URL format problems.</li>"
+  html_body += "</ul>"
+  
+  html_body += "<p>Please review these links and update them if necessary.</p>"
   
   # Create email message
   message_params = {
     from: "Good&Clean Link Checker <linkcheck@#{ENV['MAILGUN_DOMAIN']}>",
     to: 'jfeldstein@gmail.com',
-    subject: 'Good&Clean.shop: Amazon Link Check Report',
+    subject: "Good&Clean.shop: #{report.size} Broken Amazon Links Found",
     html: html_body
   }
   
@@ -139,9 +179,10 @@ else
     puts "- #{issue[:url]}: #{issue[:status] || 'Error'} - #{issue[:error]}"
   end
   
-  # Create a JSON report file for GitHub Actions artifact
+  # Create a JSON report file for local debugging purposes
   File.write('link_check_report.json', JSON.pretty_generate(issues))
+  puts "Debug report saved to link_check_report.json (not uploaded as an artifact)"
   
-  # Send email report
+  # Send email report with detailed information
   send_email(issues)
 end 

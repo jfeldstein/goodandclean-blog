@@ -133,7 +133,7 @@ def check_link(url, max_retries=5)
       retries += 1
       puts "Got #{status} for #{url}, retrying (#{retries}/#{max_retries})..."
       sleep(2 * retries) # Exponential backoff
-      retry
+      raise "Forcing retry for 5xx error" # Force a retry by raising an exception
     end
     
     # Return the status
@@ -148,7 +148,7 @@ def check_link(url, max_retries=5)
   rescue => e
     puts "❌ #{url} - Error: #{e.message}"
     # If the error is potentially temporary and we haven't retried too many times
-    if (e.message.include?('execution expired') || e.message.include?('timed out')) && retries < max_retries
+    if retries < max_retries
       retries += 1
       puts "Retrying (#{retries}/#{max_retries})..."
       sleep(2 * retries) # Exponential backoff

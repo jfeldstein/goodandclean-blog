@@ -11,7 +11,7 @@ features:
   - Compact and portable design
   - Multiple tools in one
   - Lifetime warranty
-last_updated: 2025-03-10 08:02:28
+last_updated: 2025-03-10 09:02:19
 ---
 
 Retired Leatherman Fuse — Excellent EDC Multi-Tool - A reliable Leatherman multi-tool for everyday tasks.

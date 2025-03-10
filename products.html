@@ -19,17 +19,6 @@ permalink: /products/
           <img src="{{ '/assets/images/product-placeholder.jpg' | relative_url }}" alt="{{ product.title }}">
         {% endif %}
         <h3>{{ product.title }}</h3>
-        {% if product.rating %}
-        <div class="product-rating">
-          {% for i in (1..5) %}
-            {% if i <= product.rating %}
-              ★
-            {% else %}
-              ☆
-            {% endif %}
-          {% endfor %}
-        </div>
-        {% endif %}
         <div class="product-category">{{ product.category }}</div>
       </a>
       <a href="{{ product.amazon_link }}{{ site.amazon_affiliate_id }}" class="btn btn-sm" target="_blank" rel="nofollow">View on Amazon</a>

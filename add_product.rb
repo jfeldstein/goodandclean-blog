@@ -2,6 +2,8 @@
 require 'date'
 require 'fileutils'
 require 'yaml'
+require 'open-uri'
+require 'nokogiri'
 
 # Function to generate a slug from a title
 def slugify(title)
@@ -20,18 +22,82 @@ def extract_asin(url)
   end
 end
 
-# Get product information from user
+# Function to fetch product title and category from Amazon
+def fetch_product_details(url)
+  begin
+    user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36"
+    html_content = URI.open(url, "User-Agent" => user_agent).read
+    doc = Nokogiri::HTML(html_content)
+    
+    # Extract title
+    title = doc.css('#productTitle').text.strip
+    
+    # Extract category (this might vary depending on Amazon's HTML structure)
+    # Try to get the main category from breadcrumbs
+    category = doc.css('#wayfinding-breadcrumbs_feature_div ul li:not(:last-child) a').first&.text&.strip
+    
+    # If breadcrumbs not found, try alternative methods
+    if category.nil? || category.empty?
+      category = doc.css('.a-link-normal.a-color-tertiary').first&.text&.strip
+    end
+    
+    # If still no category, check product details
+    if category.nil? || category.empty?
+      doc.css('.a-section.a-spacing-small.a-spacing-top-small td.a-span3').each do |td|
+        if td.text.strip.downcase.include?('category')
+          category = td.next_element.text.strip
+          break
+        end
+      end
+    end
+    
+    # Default category if unable to extract
+    category = "Uncategorized" if category.nil? || category.empty?
+    
+    return { title: title, category: category }
+  rescue => e
+    puts "Error fetching product details: #{e.message}"
+    return { title: nil, category: nil }
+  end
+end
+
+# Get product URL from user
 puts "Enter Amazon product URL:"
 amazon_url = gets.chomp
 
-puts "Enter product title:"
-title = gets.chomp
+# Extract product details
+puts "Fetching product details from Amazon..."
+product_details = fetch_product_details(amazon_url)
 
-puts "Enter product category:"
-category = gets.chomp
+# Use fetched title or ask user if not found
+if product_details[:title].nil? || product_details[:title].empty?
+  puts "Could not fetch title automatically. Please enter product title:"
+  title = gets.chomp
+else
+  title = product_details[:title]
+  puts "Title: #{title}"
+  puts "Is this title correct? (Y/n):"
+  response = gets.chomp.downcase
+  if response == 'n'
+    puts "Please enter the correct product title:"
+    title = gets.chomp
+  end
+end
 
-puts "Enter product rating (1-5, can use decimals like 4.5):"
-rating = gets.chomp.to_f
+# Use fetched category or ask user if not found
+if product_details[:category].nil? || product_details[:category].empty?
+  puts "Could not fetch category automatically. Please enter product category:"
+  category = gets.chomp
+else
+  category = product_details[:category]
+  puts "Category: #{category}"
+  puts "Is this category correct? (Y/n):"
+  response = gets.chomp.downcase
+  if response == 'n'
+    puts "Please enter the correct product category:"
+    category = gets.chomp
+  end
+end
 
 puts "Enter comma-separated list of pros (e.g. 'Good battery life, Durable, Easy to use'):"
 pros_input = gets.chomp
@@ -59,7 +125,6 @@ layout: product
 title: "#{title}"
 slug: #{slug}
 category: #{category}
-rating: #{rating}
 image: /assets/images/product-placeholder.jpg
 amazon_link: #{amazon_link}
 pros:

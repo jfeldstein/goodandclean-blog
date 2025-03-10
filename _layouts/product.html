@@ -7,19 +7,6 @@ layout: default
     <h1 class="product-title">{{ page.title }}</h1>
     <div class="product-meta">
       <span class="product-category">Category: {{ page.category }}</span>
-      {% if page.rating %}
-      <span class="product-rating">
-        Rating: 
-        {% for i in (1..5) %}
-          {% if i <= page.rating %}
-            ★
-          {% else %}
-            ☆
-          {% endif %}
-        {% endfor %}
-        ({{ page.rating }}/5)
-      </span>
-      {% endif %}
     </div>
   </div>
 

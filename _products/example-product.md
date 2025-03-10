@@ -3,7 +3,6 @@ layout: product
 title: "Example Product"
 slug: example-product
 category: Electronics
-rating: 4.5
 image: /assets/images/product-placeholder.jpg
 amazon_link: https://www.amazon.com/dp/B08N5BWQGT/
 pros:

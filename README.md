@@ -5,7 +5,8 @@ This is a Jekyll-based blog for showcasing Amazon products with affiliate links.
 ## Features
 
 - Responsive design that works on mobile, tablet, and desktop
-- Product showcase with ratings, pros, and cons
+- Product showcase with pros and cons
+- Automatic fetching of product title and category from Amazon URLs
 - Blog posts that can feature multiple products
 - Automatic addition of your Amazon affiliate ID to all product links
 - Easy to customize and extend
@@ -17,6 +18,10 @@ This is a Jekyll-based blog for showcasing Amazon products with affiliate links.
    - Change the `title`, `email`, and `description`
    - Set your `github_username`
    - Most importantly, update the `amazon_affiliate_id` with your Amazon Affiliate ID
+3. Install required Ruby gems:
+   ```
+   gem install nokogiri open-uri
+   ```
 
 ## Adding Products
 
@@ -31,14 +36,13 @@ Run the script:
 ```
 
 Follow the prompts to enter:
-- Amazon product URL
-- Product title
-- Category
-- Rating
+- Amazon product URL (title and category will be fetched automatically)
+- Confirm or edit the fetched title and category
 - Pros and cons
 
 The script will:
 - Extract the Amazon ASIN from the URL
+- Fetch the product title and category automatically
 - Create a properly formatted product file in the `_products` directory
 - Set up the necessary front matter
 
@@ -53,7 +57,6 @@ layout: product
 title: "Product Name"
 slug: product-name
 category: Category
-rating: 4.5
 image: /assets/images/product-placeholder.jpg
 amazon_link: https://www.amazon.com/dp/ASIN/
 pros:

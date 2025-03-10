@@ -53,7 +53,7 @@ defaults:
       layout: "leatherman"
 
 # Amazon affiliate ID (replace with your actual ID)
-amazon_affiliate_id: YOUR-AFFILIATE-ID
+amazon_affiliate_id: goodandclean-20
 
 # eBay store information
 ebay_store: Goodandclean.shop

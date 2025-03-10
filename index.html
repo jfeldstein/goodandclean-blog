@@ -1,0 +1,74 @@
+---
+layout: default
+title: Home
+---
+
+<div class="home">
+  <section class="hero">
+    <h1>Welcome to My Amazon Affiliate Product Recommendations</h1>
+    <p>Here you'll find honest reviews and recommendations for products I personally love and use.</p>
+  </section>
+
+  <section class="featured-products">
+    <h2>Featured Products</h2>
+    <div class="products-grid">
+      {% for product in site.products limit:6 %}
+      <div class="product-card">
+        <a href="{{ product.url | relative_url }}">
+          {% if product.image %}
+            <img src="{{ product.image | relative_url }}" alt="{{ product.title }}">
+          {% else %}
+            <img src="{{ '/assets/images/product-placeholder.jpg' | relative_url }}" alt="{{ product.title }}">
+          {% endif %}
+          <h3>{{ product.title }}</h3>
+          {% if product.rating %}
+          <div class="product-rating">
+            {% for i in (1..5) %}
+              {% if i <= product.rating %}
+                ★
+              {% else %}
+                ☆
+              {% endif %}
+            {% endfor %}
+          </div>
+          {% endif %}
+        </a>
+        <a href="{{ product.amazon_link }}{{ site.amazon_affiliate_id }}" class="btn btn-sm" target="_blank" rel="nofollow">View on Amazon</a>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="view-all">
+      <a href="{{ '/products' | relative_url }}" class="btn">View All Products</a>
+    </div>
+  </section>
+
+  <section class="latest-posts">
+    <h2>Latest Reviews</h2>
+    <div class="posts-grid">
+      {% for post in site.posts limit:3 %}
+      <div class="post-card">
+        <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+        <div class="post-meta">
+          <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time>
+        </div>
+        <div class="post-excerpt">
+          {{ post.excerpt | strip_html | truncate: 120 }}
+        </div>
+        <a href="{{ post.url | relative_url }}" class="read-more">Read more...</a>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="view-all">
+      <a href="{{ '/blog' | relative_url }}" class="btn">View All Posts</a>
+    </div>
+  </section>
+
+  <section class="about-section">
+    <h2>About This Site</h2>
+    <p>
+      I only recommend products that I personally use and believe in. If you purchase through the links on this site, 
+      I may earn a commission at no additional cost to you, which helps support this site.
+    </p>
+    <a href="{{ '/about' | relative_url }}" class="btn">Learn More</a>
+  </section>
+</div> 

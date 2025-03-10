@@ -1,0 +1,48 @@
+---
+layout: default
+---
+
+<article class="post">
+  <header class="post-header">
+    <h1 class="post-title">{{ page.title }}</h1>
+    <div class="post-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>
+      {% if page.categories.size > 0 %}
+      <span class="post-categories">
+        in 
+        {% for category in page.categories %}
+          <a href="{{ '/categories/' | append: category | relative_url }}">{{ category }}</a>{% unless forloop.last %}, {% endunless %}
+        {% endfor %}
+      </span>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="post-content">
+    {{ content }}
+  </div>
+
+  {% if page.featured_products %}
+  <div class="featured-products">
+    <h2>Featured Products</h2>
+    <div class="products-grid">
+      {% for product_id in page.featured_products %}
+        {% assign product = site.products | where: "slug", product_id | first %}
+        {% if product %}
+        <div class="product-card">
+          <a href="{{ product.url | relative_url }}">
+            {% if product.image %}
+              <img src="{{ product.image | relative_url }}" alt="{{ product.title }}">
+            {% else %}
+              <img src="{{ '/assets/images/product-placeholder.jpg' | relative_url }}" alt="{{ product.title }}">
+            {% endif %}
+            <h3>{{ product.title }}</h3>
+          </a>
+          <a href="{{ product.amazon_link }}{{ site.amazon_affiliate_id }}" class="btn btn-sm" target="_blank" rel="nofollow">View on Amazon</a>
+        </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+</article> 

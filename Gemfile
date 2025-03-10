@@ -3,8 +3,8 @@ source "https://rubygems.org"
 # This is the version of Jekyll being used
 gem "jekyll", "~> 4.4.1"
 
-# This is the default theme used by Jekyll
-gem "minima", "~> 2.5"
+# This is the default theme used by Jekyll (commented out to use custom theme)
+# gem "minima", "~> 2.5"
 
 # If you have any plugins, put them here!
 group :jekyll_plugins do
@@ -30,3 +30,9 @@ gem "webrick", "~> 1.7"
 
 # Add the sass-embedded gem to handle Sass deprecation warnings
 gem "sass-embedded", "~> 1.85.1"
+
+# Gem for downloading images
+gem "down", "~> 5.4"
+
+# Gem for parsing HTML
+gem "nokogiri", "~> 1.15"

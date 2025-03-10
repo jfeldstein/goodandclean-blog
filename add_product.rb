@@ -4,6 +4,7 @@ require 'fileutils'
 require 'yaml'
 require 'open-uri'
 require 'nokogiri'
+require 'down'
 
 # Function to generate a slug from a title
 def slugify(title)
@@ -22,7 +23,29 @@ def extract_asin(url)
   end
 end
 
-# Function to fetch product title and category from Amazon
+# Function to download an image and save it to assets/images
+def download_image(image_url, slug)
+  begin
+    puts "Downloading image from #{image_url}..."
+    
+    # Create the directory if it doesn't exist
+    FileUtils.mkdir_p('assets/images')
+    
+    # Generate the local file path
+    local_path = "assets/images/#{slug}.jpg"
+    
+    # Download the image
+    Down.download(image_url, destination: local_path)
+    
+    puts "Image saved to #{local_path}"
+    return "/assets/images/#{slug}.jpg"
+  rescue => e
+    puts "Error downloading image: #{e.message}"
+    return nil
+  end
+end
+
+# Function to fetch product title, category, and image URL from Amazon
 def fetch_product_details(url)
   begin
     user_agent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36"
@@ -54,10 +77,26 @@ def fetch_product_details(url)
     # Default category if unable to extract
     category = "Uncategorized" if category.nil? || category.empty?
     
-    return { title: title, category: category }
+    # Extract the product image URL
+    # Try the main image first
+    image_url = doc.css('#landingImage').attr('src')&.value
+    
+    # If not found, try the main image data-old-hires attribute
+    if image_url.nil?
+      image_url = doc.css('#landingImage').attr('data-old-hires')&.value
+    end
+    
+    # If still not found, try other image elements
+    if image_url.nil?
+      image_url = doc.css('#imgBlkFront').attr('src')&.value || 
+                 doc.css('#ebooksImgBlkFront').attr('src')&.value ||
+                 doc.css('img.a-dynamic-image').first&.attr('src')&.value
+    end
+    
+    return { title: title, category: category, image_url: image_url }
   rescue => e
     puts "Error fetching product details: #{e.message}"
-    return { title: nil, category: nil }
+    return { title: nil, category: nil, image_url: nil }
   end
 end
 
@@ -118,6 +157,18 @@ else
   amazon_link = amazon_url
 end
 
+# Download the product image if available
+image_path = "/assets/images/product-placeholder.jpg"  # Default placeholder
+if product_details[:image_url]
+  puts "Image URL found: #{product_details[:image_url]}"
+  puts "Would you like to download this image? (Y/n):"
+  response = gets.chomp.downcase
+  if response != 'n'
+    downloaded_image_path = download_image(product_details[:image_url], slug)
+    image_path = downloaded_image_path if downloaded_image_path
+  end
+end
+
 # Create product file content
 product_content = <<~CONTENT
 ---
@@ -125,7 +176,7 @@ layout: product
 title: "#{title}"
 slug: #{slug}
 category: #{category}
-image: /assets/images/product-placeholder.jpg
+image: #{image_path}
 amazon_link: #{amazon_link}
 pros:
 #{pros.map { |pro| "  - #{pro}" }.join("\n")}
@@ -163,6 +214,12 @@ File.write(File.join('_products', "#{slug}.md"), product_content)
 
 puts "\nProduct added successfully!"
 puts "Product file created at: _products/#{slug}.md"
-puts "\nTo add an image for this product, place it at: assets/images/#{slug}.jpg"
-puts "Then update the image path in the product file."
+
+if image_path == "/assets/images/product-placeholder.jpg"
+  puts "\nNo image was downloaded. To add an image for this product, place it at: assets/images/#{slug}.jpg"
+  puts "Then update the image path in the product file."
+else
+  puts "\nProduct image downloaded to: #{image_path}"
+end
+
 puts "\nRemember to update your affiliate ID in _config.yml" 

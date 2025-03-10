@@ -8,7 +8,7 @@ github_username: jfeldstein
 
 # Build settings
 markdown: kramdown
-theme: minima
+# theme: minima  # Commented out to use our custom theme
 plugins:
   - jekyll-feed
 

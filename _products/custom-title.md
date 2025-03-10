@@ -1,14 +1,17 @@
 ---
 layout: product
-title: "Black Tactical Backpack, Military Backpack, Molle Backpack"
-slug: black-tactical-backpack-military-backpack-molle-backpack
-category: Sports & Outdoors
-image: /assets/images/black-tactical-backpack-military-backpack-molle-backpack.jpg
-amazon_link: https://www.amazon.com/dp/B08JSTP3HL/
+title: "Custom Title"
+slug: custom-title
+category: Electronics
+image: /assets/images/custom-title.jpg
+amazon_link: https://www.amazon.com/dp/B07PDVTMM6/
 pros:
-
+  - Durable
+  - Fast
+  - Reliable
 cons:
-
+  - Expensive
+  - Heavy
 ---
 
 Write your detailed product review here. Include your personal experience, product features, and who would benefit from this product.

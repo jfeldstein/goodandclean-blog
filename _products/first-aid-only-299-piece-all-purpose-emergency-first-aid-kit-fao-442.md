@@ -1,10 +1,10 @@
 ---
 layout: product
-title: "Black Tactical Backpack, Military Backpack, Molle Backpack"
-slug: black-tactical-backpack-military-backpack-molle-backpack
-category: Sports & Outdoors
-image: /assets/images/black-tactical-backpack-military-backpack-molle-backpack.jpg
-amazon_link: https://www.amazon.com/dp/B08JSTP3HL/
+title: "First Aid Only 299 Piece All-Purpose Emergency First Aid Kit (FAO-442)"
+slug: first-aid-only-299-piece-all-purpose-emergency-first-aid-kit-fao-442
+category: Health & Household
+image: /assets/images/first-aid-only-299-piece-all-purpose-emergency-first-aid-kit-fao-442.jpg
+amazon_link: https://www.amazon.com/dp/B000069EYA/
 pros:
 
 cons:

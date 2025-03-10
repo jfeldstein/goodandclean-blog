@@ -1,10 +1,10 @@
 ---
 layout: product
-title: "Black Tactical Backpack, Military Backpack, Molle Backpack"
-slug: black-tactical-backpack-military-backpack-molle-backpack
+title: "Mylar Men's Emergency Thermal Blankets (10 Pack)"
+slug: mylar-mens-emergency-thermal-blankets-10-pack
 category: Sports & Outdoors
-image: /assets/images/black-tactical-backpack-military-backpack-molle-backpack.jpg
-amazon_link: https://www.amazon.com/dp/B08JSTP3HL/
+image: /assets/images/mylar-mens-emergency-thermal-blankets-10-pack.jpg
+amazon_link: https://www.amazon.com/dp/B000GCRWCG/
 pros:
 
 cons:

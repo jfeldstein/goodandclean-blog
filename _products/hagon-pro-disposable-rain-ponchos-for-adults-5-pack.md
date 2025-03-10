@@ -1,10 +1,10 @@
 ---
 layout: product
-title: "Black Tactical Backpack, Military Backpack, Molle Backpack"
-slug: black-tactical-backpack-military-backpack-molle-backpack
-category: Sports & Outdoors
-image: /assets/images/black-tactical-backpack-military-backpack-molle-backpack.jpg
-amazon_link: https://www.amazon.com/dp/B08JSTP3HL/
+title: "Hagon PRO Disposable Rain Ponchos for Adults (5 Pack)"
+slug: hagon-pro-disposable-rain-ponchos-for-adults-5-pack
+category: Clothing, Shoes & Jewelry
+image: /assets/images/hagon-pro-disposable-rain-ponchos-for-adults-5-pack.jpg
+amazon_link: https://www.amazon.com/dp/B07PHV9WZ5/
 pros:
 
 cons:

@@ -5,6 +5,46 @@ require 'yaml'
 require 'open-uri'
 require 'nokogiri'
 require 'down'
+require 'optparse'
+
+# Parse command line options
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: add_product.rb [options]"
+  
+  opts.on("-u", "--url URL", "Amazon product URL") do |url|
+    options[:amazon_url] = url
+  end
+  
+  opts.on("-t", "--title TITLE", "Override product title") do |title|
+    options[:title] = title
+  end
+  
+  opts.on("-c", "--category CATEGORY", "Override product category") do |category|
+    options[:category] = category
+  end
+  
+  opts.on("-p", "--pros PROS", "Comma-separated list of pros") do |pros|
+    options[:pros] = pros
+  end
+  
+  opts.on("-n", "--cons CONS", "Comma-separated list of cons") do |cons|
+    options[:cons] = cons
+  end
+  
+  opts.on("-i", "--[no-]image", "Download image (default: true)") do |download_image|
+    options[:download_image] = download_image
+  end
+  
+  opts.on("--non-interactive", "Run without prompting for input") do
+    options[:non_interactive] = true
+  end
+  
+  opts.on_tail("-h", "--help", "Show this message") do
+    puts opts
+    exit
+  end
+end.parse!
 
 # Function to generate a slug from a title
 def slugify(title)
@@ -100,50 +140,98 @@ def fetch_product_details(url)
   end
 end
 
-# Get product URL from user
-puts "Enter Amazon product URL:"
-amazon_url = gets.chomp
+# Function to get user input with default value
+def get_input_with_default(prompt, default, non_interactive = false)
+  if non_interactive
+    puts "#{prompt} (using default: #{default})"
+    return default
+  else
+    puts "#{prompt} (default: #{default}):"
+    response = gets.chomp
+    return response.empty? ? default : response
+  end
+end
+
+# Function to confirm with default yes in non-interactive mode
+def confirm_with_default(prompt, non_interactive = false)
+  if non_interactive
+    puts "#{prompt} (using default: Y)"
+    return true
+  else
+    puts "#{prompt} (Y/n):"
+    response = gets.chomp.downcase
+    return response != 'n'
+  end
+end
+
+# Get Amazon URL
+if options[:amazon_url]
+  amazon_url = options[:amazon_url]
+else
+  if options[:non_interactive]
+    puts "Error: Amazon URL is required in non-interactive mode"
+    puts "Use: add_product.rb --url AMAZON_URL --non-interactive"
+    exit 1
+  else
+    puts "Enter Amazon product URL:"
+    amazon_url = gets.chomp
+  end
+end
 
 # Extract product details
 puts "Fetching product details from Amazon..."
 product_details = fetch_product_details(amazon_url)
 
-# Use fetched title or ask user if not found
-if product_details[:title].nil? || product_details[:title].empty?
-  puts "Could not fetch title automatically. Please enter product title:"
-  title = gets.chomp
-else
+# Use fetched title or override with provided title
+if options[:title]
+  title = options[:title]
+  puts "Using provided title: #{title}"
+elsif product_details[:title] && !product_details[:title].empty?
   title = product_details[:title]
   puts "Title: #{title}"
-  puts "Is this title correct? (Y/n):"
-  response = gets.chomp.downcase
-  if response == 'n'
-    puts "Please enter the correct product title:"
-    title = gets.chomp
+  unless options[:non_interactive]
+    if !confirm_with_default("Is this title correct?")
+      puts "Please enter the correct product title:"
+      title = gets.chomp
+    end
   end
+else
+  title = get_input_with_default("Could not fetch title automatically. Please enter product title", "Untitled Product", options[:non_interactive])
 end
 
-# Use fetched category or ask user if not found
-if product_details[:category].nil? || product_details[:category].empty?
-  puts "Could not fetch category automatically. Please enter product category:"
-  category = gets.chomp
-else
+# Use fetched category or override with provided category
+if options[:category]
+  category = options[:category]
+  puts "Using provided category: #{category}"
+elsif product_details[:category] && !product_details[:category].empty?
   category = product_details[:category]
   puts "Category: #{category}"
-  puts "Is this category correct? (Y/n):"
-  response = gets.chomp.downcase
-  if response == 'n'
-    puts "Please enter the correct product category:"
-    category = gets.chomp
+  unless options[:non_interactive]
+    if !confirm_with_default("Is this category correct?")
+      puts "Please enter the correct product category:"
+      category = gets.chomp
+    end
   end
+else
+  category = get_input_with_default("Could not fetch category automatically. Please enter product category", "Uncategorized", options[:non_interactive])
 end
 
-puts "Enter comma-separated list of pros (e.g. 'Good battery life, Durable, Easy to use'):"
-pros_input = gets.chomp
+# Handle pros
+if options[:pros]
+  pros_input = options[:pros]
+  puts "Using provided pros: #{pros_input}"
+else
+  pros_input = options[:non_interactive] ? "" : get_input_with_default("Enter comma-separated list of pros (e.g. 'Good battery life, Durable, Easy to use')", "", options[:non_interactive])
+end
 pros = pros_input.split(',').map(&:strip)
 
-puts "Enter comma-separated list of cons (e.g. 'Expensive, Heavy, Limited color options'):"
-cons_input = gets.chomp
+# Handle cons
+if options[:cons]
+  cons_input = options[:cons]
+  puts "Using provided cons: #{cons_input}"
+else
+  cons_input = options[:non_interactive] ? "" : get_input_with_default("Enter comma-separated list of cons (e.g. 'Expensive, Heavy, Limited color options')", "", options[:non_interactive])
+end
 cons = cons_input.split(',').map(&:strip)
 
 # Generate slug from title
@@ -161,9 +249,10 @@ end
 image_path = "/assets/images/product-placeholder.jpg"  # Default placeholder
 if product_details[:image_url]
   puts "Image URL found: #{product_details[:image_url]}"
-  puts "Would you like to download this image? (Y/n):"
-  response = gets.chomp.downcase
-  if response != 'n'
+  # Check if download_image option is set or ask user in interactive mode
+  should_download = options.key?(:download_image) ? options[:download_image] : confirm_with_default("Would you like to download this image?", options[:non_interactive])
+  
+  if should_download
     downloaded_image_path = download_image(product_details[:image_url], slug)
     image_path = downloaded_image_path if downloaded_image_path
   end

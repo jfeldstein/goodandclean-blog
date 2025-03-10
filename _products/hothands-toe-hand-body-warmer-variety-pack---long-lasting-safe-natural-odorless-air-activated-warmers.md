@@ -1,10 +1,10 @@
 ---
 layout: product
-title: "Black Tactical Backpack, Military Backpack, Molle Backpack"
-slug: black-tactical-backpack-military-backpack-molle-backpack
+title: "HotHands Toe, Hand, & Body Warmer Variety Pack - Long Lasting Safe Natural Odorless Air Activated Warmers"
+slug: hothands-toe-hand-body-warmer-variety-pack---long-lasting-safe-natural-odorless-air-activated-warmers
 category: Sports & Outdoors
-image: /assets/images/black-tactical-backpack-military-backpack-molle-backpack.jpg
-amazon_link: https://www.amazon.com/dp/B08JSTP3HL/
+image: /assets/images/hothands-toe-hand-body-warmer-variety-pack---long-lasting-safe-natural-odorless-air-activated-warmers.jpg
+amazon_link: https://www.amazon.com/dp/B004R1J464/
 pros:
 
 cons:

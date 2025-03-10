@@ -1,10 +1,10 @@
 ---
 layout: product
-title: "Black Tactical Backpack, Military Backpack, Molle Backpack"
-slug: black-tactical-backpack-military-backpack-molle-backpack
-category: Sports & Outdoors
-image: /assets/images/black-tactical-backpack-military-backpack-molle-backpack.jpg
-amazon_link: https://www.amazon.com/dp/B08JSTP3HL/
+title: "SandPiper Premium Natural White Sand for Sandbox & Other Play Areas, Fine Texture, 25 lbs"
+slug: sandpiper-premium-natural-white-sand-for-sandbox-other-play-areas-fine-texture-25-lbs
+category: Toys & Games
+image: /assets/images/sandpiper-premium-natural-white-sand-for-sandbox-other-play-areas-fine-texture-25-lbs.jpg
+amazon_link: https://www.amazon.com/dp/B0DDV2816W/
 pros:
 
 cons:

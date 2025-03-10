@@ -174,8 +174,8 @@ The site includes a daily link checker that automatically verifies all Amazon pr
 - Documentation available in [docs/link-checker.md](docs/link-checker.md)
 
 To setup email notifications for broken links:
-1. Add `EMAIL_USERNAME` and `EMAIL_PASSWORD` secrets in GitHub repository settings
-2. The password should be a Gmail app password (not your regular password)
+1. Add `MAILGUN_API_KEY` and `MAILGUN_DOMAIN` secrets in GitHub repository settings
+2. Uses Mailgun's API to send notification emails when broken links are found
 
 ## Setup
 

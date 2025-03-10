@@ -29,14 +29,14 @@ end.parse!
 puts "Good&Clean.shop Amazon Link Checker"
 puts "---------------------------------"
 
-# Configure email if the mail gem is available and email option is enabled
+# Configure email if the mailgun-ruby gem is available and email option is enabled
 if options[:email]
   begin
-    require 'mail'
+    require 'mailgun-ruby'
     email_available = true
-    puts "Email reporting enabled"
+    puts "Email reporting enabled (using Mailgun)"
   rescue LoadError
-    puts "Warning: Mail gem not installed. Run 'gem install mail' to enable email reporting."
+    puts "Warning: Mailgun gem not installed. Run 'gem install mailgun-ruby' to enable email reporting."
     email_available = false
   end
 end
@@ -151,49 +151,46 @@ def check_link(link_data, max_retries=5, verbose=false)
   end
 end
 
-# Send email report
+# Send email report using Mailgun
 def send_email(report)
   return if report.empty?
   
   # Check if we have the required environment variables
-  unless ENV['EMAIL_USERNAME'] && ENV['EMAIL_PASSWORD']
-    puts "Error: EMAIL_USERNAME and EMAIL_PASSWORD environment variables are required for sending emails."
-    puts "Example usage: EMAIL_USERNAME=your.email@gmail.com EMAIL_PASSWORD=your_app_password ruby check_links.rb --email"
+  unless ENV['MAILGUN_API_KEY'] && ENV['MAILGUN_DOMAIN']
+    puts "Error: MAILGUN_API_KEY and MAILGUN_DOMAIN environment variables are required for sending emails."
+    puts "Example usage: MAILGUN_API_KEY=key-xxx MAILGUN_DOMAIN=mg.example.com ruby check_links.rb --email"
     return false
   end
   
-  Mail.defaults do
-    delivery_method :smtp, {
-      address: "smtp.gmail.com",
-      port: 587,
-      domain: "gmail.com",
-      user_name: ENV['EMAIL_USERNAME'],
-      password: ENV['EMAIL_PASSWORD'],
-      authentication: :plain,
-      enable_starttls_auto: true
-    }
-  end
+  # Initialize Mailgun client
+  mailgun = Mailgun::Client.new(ENV['MAILGUN_API_KEY'])
   
-  mail = Mail.new do
-    from    ENV['EMAIL_USERNAME']
-    to      'jfeldstein@gmail.com'
-    subject 'Good&Clean.shop: Amazon Link Check Report'
-    
-    html_part do
-      content_type 'text/html; charset=UTF-8'
-      body "<h1>Amazon Link Check Report</h1>
-           <p>The following links have issues:</p>
-           <table border='1' cellpadding='5'>
-           <tr><th>URL</th><th>Source File</th><th>Status</th><th>Error</th></tr>
-           #{report.map { |link| "<tr><td>#{link[:url]}</td><td>#{link[:source]}</td><td>#{link[:status]}</td><td>#{link[:error]}</td></tr>" }.join}
-           </table>
-           <p>Please review these links and update them if necessary.</p>"
-    end
-  end
+  # Create HTML email body
+  html_body = "<h1>Amazon Link Check Report</h1>
+       <p>The following links have issues:</p>
+       <table border='1' cellpadding='5'>
+       <tr><th>URL</th><th>Source File</th><th>Status</th><th>Error</th></tr>
+       #{report.map { |link| "<tr><td>#{link[:url]}</td><td>#{link[:source]}</td><td>#{link[:status]}</td><td>#{link[:error]}</td></tr>" }.join}
+       </table>
+       <p>Please review these links and update them if necessary.</p>"
   
-  mail.deliver!
-  puts "Email report sent to jfeldstein@gmail.com"
-  return true
+  # Create email message
+  message_params = {
+    from: "Good&Clean Link Checker <linkcheck@#{ENV['MAILGUN_DOMAIN']}>",
+    to: 'jfeldstein@gmail.com',
+    subject: 'Good&Clean.shop: Amazon Link Check Report',
+    html: html_body
+  }
+  
+  # Send email
+  begin
+    response = mailgun.send_message(ENV['MAILGUN_DOMAIN'], message_params)
+    puts "Email report sent to jfeldstein@gmail.com (Mailgun response: #{response.to_h[:message]})"
+    return true
+  rescue => e
+    puts "Failed to send email: #{e.message}"
+    return false
+  end
 end
 
 # Main execution

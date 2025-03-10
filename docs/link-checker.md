@@ -29,15 +29,14 @@ For the email notifications to work, you need to add the following secrets to yo
 
 1. Go to your repository's Settings → Secrets and variables → Actions
 2. Add two new repository secrets:
-   - `EMAIL_USERNAME`: Your Gmail address that will send the notifications
-   - `EMAIL_PASSWORD`: An app password for your Gmail account (not your regular password)
+   - `MAILGUN_API_KEY`: Your Mailgun API key (begins with "key-")
+   - `MAILGUN_DOMAIN`: Your Mailgun domain (e.g., "mg.yourdomain.com")
 
-**Important**: To create an app password for Gmail:
-1. Go to your Google Account
-2. Navigate to Security
-3. Under "Signing in to Google," select "App passwords" (requires 2-Step Verification to be enabled)
-4. Create a new app password for "GitHub Actions"
-5. Use this generated password as your `EMAIL_PASSWORD` secret
+**Important**: To set up a Mailgun account if you don't have one:
+1. Sign up at [Mailgun.com](https://www.mailgun.com/)
+2. Verify your domain or use Mailgun's sandbox domain for testing
+3. Find your API key in the Mailgun dashboard under "API Keys"
+4. Copy your API key and domain to use as GitHub secrets
 
 ## Manual Triggering
 

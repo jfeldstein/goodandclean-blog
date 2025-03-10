@@ -31,8 +31,8 @@ gem "down", "~> 5.4"
 # Gem for parsing HTML
 gem "nokogiri", "~> 1.15"
 
-# Pin activesupport to a version compatible with Ruby 3.1.x
+# Pin activesupport to a version compatible with Ruby 3.1.x for GitHub Pages
 gem "activesupport", "~> 7.0.8"
 
-# Required for Ruby 3.4
-gem "bigdecimal"
+# Required for Ruby 3.4 (local development)
+gem "bigdecimal", ">= 3.1.0"

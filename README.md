@@ -1,6 +1,69 @@
-# Amazon Affiliate Product Recommendations Blog
+# Good&Clean Blog
 
-This is a Jekyll-based blog for showcasing Amazon products with affiliate links. It's designed to be hosted on GitHub Pages and allows you to earn commission from Amazon's affiliate program.
+This is a Jekyll-based blog for Good&Clean products, featuring Amazon affiliate recommendations and eBay store listings.
+
+## Automated eBay Listings
+
+The site includes automation for keeping eBay product listings up-to-date with your Good&Clean eBay store.
+
+### How It Works
+
+1. The `scrape_ebay_listings.rb` script fetches the current listings from your eBay store
+2. It creates Markdown files for each product in the `_leatherman` directory
+3. Each product page includes the correct eBay link, redirecting visitors to your eBay listing
+
+### Setting Up Automated Updates
+
+To keep your product listings in sync with your eBay store, you can set up a scheduled task:
+
+#### macOS/Linux (Cron)
+
+1. Open your crontab for editing:
+   ```
+   crontab -e
+   ```
+
+2. Add a line to run the update script daily (for example, at 2 AM):
+   ```
+   0 2 * * * /path/to/your/site/update_listings.sh
+   ```
+
+3. Save and exit
+
+#### Windows (Task Scheduler)
+
+1. Open Task Scheduler
+2. Create a new task to run `update_listings.sh` via WSL or Git Bash
+3. Set it to run daily
+
+## Development
+
+### Prerequisites
+
+- Ruby (version in `.ruby-version`)
+- Bundler
+
+### Getting Started
+
+1. Install dependencies:
+   ```
+   bundle install
+   ```
+
+2. Run the Jekyll server:
+   ```
+   bundle exec jekyll serve
+   ```
+
+3. View the site at http://localhost:4000
+
+## Managing eBay Links
+
+The eBay listings are dynamically fetched from your eBay store page. If you need to:
+
+- Change the eBay store URL, edit the URL in `scrape_ebay_listings.rb`
+- Manually update the products, run `bundle exec ruby scrape_ebay_listings.rb`
+- Force a rebuild of the site, run `bundle exec jekyll build`
 
 ## Features
 
@@ -10,18 +73,15 @@ This is a Jekyll-based blog for showcasing Amazon products with affiliate links.
 - Blog posts that can feature multiple products
 - Automatic addition of your Amazon affiliate ID to all product links
 - Easy to customize and extend
+- Automatic eBay store integration
 
 ## Setup
 
 1. Clone this repository
 2. Update `_config.yml` with your information:
-   - Change the `title`, `email`, and `description`
+   - Change the `title`, `email`, and `description` (already set to Good&Clean)
    - Set your `github_username`
-   - Most importantly, update the `amazon_affiliate_id` with your Amazon Affiliate ID
-3. Install required Ruby gems:
-   ```
-   gem install nokogiri open-uri
-   ```
+   - Update the `amazon_affiliate_id` with your Amazon Affiliate ID
 
 ## Adding Products
 
@@ -35,66 +95,12 @@ Run the script:
 ./add_product.rb
 ```
 
-Follow the prompts to enter:
-- Amazon product URL (title and category will be fetched automatically)
-- Confirm or edit the fetched title and category
-- Pros and cons
-
-The script will:
-- Extract the Amazon ASIN from the URL
-- Fetch the product title and category automatically
-- Create a properly formatted product file in the `_products` directory
-- Set up the necessary front matter
+Follow the prompts to enter the required information.
 
 ### Manually
 
 1. Create a new Markdown file in the `_products` directory
-2. Use the following front matter template:
-
-```yaml
----
-layout: product
-title: "Product Name"
-slug: product-name
-category: Category
-image: /assets/images/product-placeholder.jpg
-amazon_link: https://www.amazon.com/dp/ASIN/
-pros:
-  - Pro 1
-  - Pro 2
-  - Pro 3
-cons:
-  - Con 1
-  - Con 2
----
-```
-
-3. Write your product review in Markdown format below the front matter
-
-## Adding Product Images
-
-1. Add your product images to the `assets/images` directory
-2. Update the `image` path in the product's front matter to point to your image
-
-## Writing Blog Posts
-
-1. Create a new Markdown file in the `_posts` directory with the filename format: `YYYY-MM-DD-title.md`
-2. Use the following front matter template:
-
-```yaml
----
-layout: post
-title: "Your Post Title"
-date: YYYY-MM-DD
-categories: category1 category2
-featured_products:
-  - product-slug-1
-  - product-slug-2
----
-```
-
-3. Write your blog post content in Markdown format
-4. Reference products using their slugs in the `featured_products` section
+2. Use the proper front matter template
 
 ## Running Locally
 
@@ -111,13 +117,7 @@ Then visit `http://localhost:4000` in your browser.
 1. Push your changes to GitHub
 2. Go to your repository settings
 3. Under "GitHub Pages", select the branch you want to deploy from
-4. Your site will be available at `https://yourusername.github.io/repository-name/`
-
-## Customizing
-
-- Edit the CSS in `assets/css/main.scss` to change the look and feel
-- Modify the layouts in the `_layouts` directory to change the structure
-- Update the templates in the `_includes` directory for reusable components
+4. Your site will be available at `https://jfeldstein.github.io/goodandclean-blog/`
 
 ## Amazon Affiliate Program
 
@@ -125,8 +125,7 @@ Remember to follow Amazon's affiliate program rules:
 - Disclose your affiliate relationship (already included in the footer and about page)
 - Don't use affiliate links in emails or offline materials
 - Don't make false claims about products
-- Keep your affiliate ID private
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details. 
+This project is licensed under the MIT License - see the LICENSE file for details.

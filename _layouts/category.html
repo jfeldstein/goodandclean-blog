@@ -1,0 +1,54 @@
+---
+layout: default
+---
+
+<div class="category-container">
+  <header class="category-header">
+    {{ content }}
+  </header>
+</div>
+
+<style>
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .product-card {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .product-card:hover {
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transform: translateY(-5px);
+  }
+  
+  .product-image {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+  }
+  
+  .product-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    height: 2.4rem;
+    overflow: hidden;
+  }
+  
+  .price {
+    font-weight: bold;
+    color: #e63946;
+  }
+  
+  .condition {
+    color: #666;
+    font-size: 0.9rem;
+  }
+</style> 

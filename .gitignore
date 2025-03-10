@@ -1,29 +1,26 @@
-# Jekyll build files
+# Jekyll build output
 _site/
 .sass-cache/
 .jekyll-cache/
 .jekyll-metadata
 
-# Bundler files
+# Bundler
 .bundle/
 vendor/
 
-# macOS files
+# OS generated files
 .DS_Store
-.AppleDouble
-.LSOverride
-
-# Windows files
-Thumbs.db
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
 ehthumbs.db
-Desktop.ini
+Thumbs.db
 
-# Log files
+# Logs
+update_log.txt
 *.log
 
 # Ruby environment
 .ruby-version
-.ruby-gemset
-
-# Environment variables
-.env 
+.ruby-gemset 

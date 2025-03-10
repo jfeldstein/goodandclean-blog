@@ -1,7 +1,7 @@
-title: Amazon Affiliate Product Recommendations
+title: Good&Clean
 email: jfeldstein@gmail.com
 description: >-
-  A collection of my favorite Amazon products with honest reviews and recommendations.
+  Your destination for honest reviews and recommendations of quality products from Good&Clean.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 github_username: jfeldstein
@@ -17,6 +17,7 @@ amazon_affiliate_id: goodandclean-20
 
 # eBay store information
 ebay_store: Goodandclean.shop
+ebay_partner_id: 5338889850
 
 # Collections
 collections:

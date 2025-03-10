@@ -24,7 +24,9 @@ layout: default
       {{ content }}
       
       <div class="product-cta">
-        <a href="{{ page.ebay_link }}" class="btn btn-primary" target="_blank" rel="nofollow">
+        {% assign ebay_item_id = page.ebay_link | split: "/" | last %}
+        {% assign ebay_url = "https://www.ebay.com/itm/" | append: ebay_item_id | append: "?campid=" | append: site.ebay_partner_id | append: "&customid=leatherman" %}
+        <a href="{{ ebay_url }}" class="btn btn-primary" target="_blank" rel="nofollow">
           View on eBay
         </a>
       </div>

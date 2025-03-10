@@ -11,7 +11,7 @@ features:
   - Compact and portable design
   - Multiple tools in one
   - Lifetime warranty
-last_updated: 2025-03-10 07:02:29
+last_updated: 2025-03-10 08:02:28
 ---
 
 Retired Leatherman Skeletool Sublime Green & White / Silver - A reliable Leatherman multi-tool for everyday tasks.

@@ -5,13 +5,13 @@ slug: retired-leatherman-supertool-original-dated-0298
 price: 54.95
 condition: Pre-Owned
 image: /assets/images/product-placeholder.jpg
-ebay_link: https://www.ebay.com/itm/286335022409?itmmeta=01JNZ63V0NZ4BWZE2P0HC0PKXN&hash=item42aae5b549:g:08sAAOSwlOlnsjuS&itmprp=enc%3AAQAKAAAAwFkggFvd1GGDu0w3yXCmi1cKQI7zFKvKMuhpDveJ6aQZgCKgpUOO%2BONwOk619wVeJQ3cVHZue5VNARXKSFjwOqXf6zq2Xv7Ej%2FwB09Ccb%2Bl3P1odU2SsdYUUkxhs8YAQ6fJ5pObrfRrslXy3HZM8I5IJBr9goCFchSge%2FOCNY6zOQoqE7UZMv82k%2FJrnyWfvRWT9RSZ1RVaE9MYl6BSaeLhPBek4HrUeEluvI9LK27Rk92G3DWd5jK1Ppxf%2F%2BEhf7Q%3D%3D%7Ctkp%3ABk9SR7awj-avZQ
+ebay_link: https://www.ebay.com/itm/286335022409?itmmeta=01JNZ6JKYNMNHKBJ3Y8WC95FHC&hash=item42aae5b549:g:08sAAOSwlOlnsjuS&itmprp=enc%3AAQAKAAAAwFkggFvd1GGDu0w3yXCmi1cKQI7zFKvKMuhpDveJ6aQZgCKgpUOO%2BONwOk619wVeJb84tHKbLhM%2F9U9VLxkF2ibQJTGEyfsHio2pwJMrYFdQ8VSIh%2FJjkTPlxU2o1XJpB5Sw%2Bo85DWy8%2BTJF%2FVp25IbvLtee4KGlu9174k%2BGEwktkv0qeefWpvXaLdKrhBuMTaN%2B%2BorO11Bz0V%2BBbCMfW5ROWG4yi0xwim9ZlH6tvvHpHwEv8S8C2mFjdHEREKyIPg%3D%3D%7Ctkp%3ABk9SR7y_yuavZQ
 features:
   - Stainless steel construction
   - Compact and portable design
   - Multiple tools in one
   - Lifetime warranty
-last_updated: 2025-03-09 23:48:22
+last_updated: 2025-03-10 04:56:26
 ---
 
 Retired Leatherman SuperTool Original Dated "0298" - A reliable Leatherman multi-tool for everyday tasks.

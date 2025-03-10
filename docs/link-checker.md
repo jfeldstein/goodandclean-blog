@@ -18,9 +18,9 @@ The link checker:
 
 The system uses a GitHub Actions workflow (`.github/workflows/check-amazon-links.yml`) that:
 
-- Runs a Ruby script to find and check all Amazon product links
+- Runs a Ruby script (`scripts/check_amazon_links.rb`) to find and check all Amazon product links
 - Retries any links that return server errors (5xx) up to 5 times with exponential backoff
-- Uses SMTP to send email reports when issues are detected
+- Uses Mailgun's API to send email reports when issues are detected
 - Uploads a JSON report as an artifact for future reference
 
 ## Setting Up Email Notifications

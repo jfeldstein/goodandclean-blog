@@ -27,3 +27,6 @@ gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
 
 # Required for newer versions of Ruby
 gem "webrick", "~> 1.7"
+
+# Add the sass-embedded gem to handle Sass deprecation warnings
+gem "sass-embedded", "~> 1.85.1"

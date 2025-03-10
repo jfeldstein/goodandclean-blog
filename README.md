@@ -8,7 +8,33 @@ Visit the live site at: https://USERNAME.github.io/Recommended-Products-Blog (re
 
 ## Adding Products
 
-Products can be added via the `add_product.rb` script:
+Products can be added in several ways:
+
+### 1. Using the GitHub Actions Workflow (Recommended)
+
+The easiest way to add a new product is through the GitHub Actions workflow:
+
+1. Go to the "Actions" tab in your GitHub repository
+2. Select the "Add New Product" workflow
+3. Click on "Run workflow"
+4. Enter the Amazon product URL (required)
+5. Optionally provide:
+   - Custom product title
+   - Custom category
+   - Product pros (comma-separated)
+   - Product cons (comma-separated)
+6. Click "Run workflow"
+
+The workflow will automatically:
+- Fetch product details from Amazon
+- Download the product image
+- Create the product page
+- Commit and push the changes
+- Deploy the updated site via GitHub Pages
+
+### 2. Using the Ruby Script Locally
+
+You can also use the Ruby script locally:
 
 ```bash
 # Interactive mode

@@ -1,0 +1,101 @@
+name: Add New Product
+
+on:
+  workflow_dispatch:
+    inputs:
+      amazon_url:
+        description: 'Amazon product URL'
+        required: true
+        type: string
+      product_title:
+        description: 'Product title (optional)'
+        required: false
+        type: string
+      category:
+        description: 'Product category (optional)'
+        required: false
+        type: string
+      pros:
+        description: 'Product pros (comma-separated, optional)'
+        required: false
+        type: string
+      cons:
+        description: 'Product cons (comma-separated, optional)'
+        required: false
+        type: string
+
+# Permissions needed to push changes
+permissions:
+  contents: write
+
+jobs:
+  add-product:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Install dependencies
+        run: bundle install
+
+      - name: Generate product file
+        run: |
+          COMMAND="bundle exec ruby add_product.rb --url '${{ github.event.inputs.amazon_url }}' --non-interactive"
+          
+          # Add optional title if provided
+          if [[ -n "${{ github.event.inputs.product_title }}" ]]; then
+            COMMAND="$COMMAND --title '${{ github.event.inputs.product_title }}'"
+          fi
+          
+          # Add optional category if provided
+          if [[ -n "${{ github.event.inputs.category }}" ]]; then
+            COMMAND="$COMMAND --category '${{ github.event.inputs.category }}'"
+          fi
+          
+          # Add optional pros if provided
+          if [[ -n "${{ github.event.inputs.pros }}" ]]; then
+            COMMAND="$COMMAND --pros '${{ github.event.inputs.pros }}'"
+          fi
+          
+          # Add optional cons if provided
+          if [[ -n "${{ github.event.inputs.cons }}" ]]; then
+            COMMAND="$COMMAND --cons '${{ github.event.inputs.cons }}'"
+          fi
+          
+          echo "Running: $COMMAND"
+          eval $COMMAND
+
+      - name: Set up Git
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@github.com"
+
+      - name: Commit product file
+        run: |
+          # Check if there are changes to commit
+          if git diff --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          git add _products/
+          git add assets/images/
+          
+          # Extract product name for commit message
+          if [[ -n "${{ github.event.inputs.product_title }}" ]]; then
+            PRODUCT_NAME="${{ github.event.inputs.product_title }}"
+          else
+            # Try to get the product name from the generated file
+            NEWEST_PRODUCT=$(ls -t _products/ | head -1)
+            PRODUCT_NAME=${NEWEST_PRODUCT%.md}
+          fi
+          
+          git commit -m "Add new product: $PRODUCT_NAME"
+          git push 

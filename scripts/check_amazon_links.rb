@@ -118,6 +118,8 @@ def check_link(url, max_retries=5)
   retries = 0
   begin
     uri = URI.parse(url)
+    
+    # First try with HEAD request
     response = HTTParty.head(url, 
       headers: {
         'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
@@ -127,6 +129,19 @@ def check_link(url, max_retries=5)
     )
     
     status = response.code
+    
+    # If we get a 405 Method Not Allowed, try again with GET
+    if status == 405
+      puts "Got 405 for #{url}, retrying with GET request..."
+      response = HTTParty.get(url, 
+        headers: {
+          'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+        },
+        timeout: 10,
+        follow_redirects: true
+      )
+      status = response.code
+    end
     
     # If we get a 5xx error, retry
     if status >= 500 && status < 600 && retries < max_retries

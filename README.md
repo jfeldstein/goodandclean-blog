@@ -1,10 +1,10 @@
-# Recommended Products Blog
+# Good&Clean.shop
 
 A curated collection of product recommendations hosted on GitHub Pages.
 
 ## Website
 
-Visit the live site at: https://USERNAME.github.io/Recommended-Products-Blog (replace USERNAME with your GitHub username)
+Visit the live site at: https://jfeldstein.github.io/goodandclean.shop/
 
 ## Adding Products
 
@@ -61,7 +61,7 @@ To run the site locally:
 
 1. Install dependencies: `bundle install`
 2. Start the Jekyll server: `bundle exec jekyll serve`
-3. Visit `http://localhost:4000/Recommended-Products-Blog/` in your browser
+3. Visit `http://localhost:4000/goodandclean.shop/` in your browser
 
 ## Updating Configuration
 
@@ -179,4 +179,4 @@ To run the site locally:
 bundle exec jekyll serve
 ```
 
-Then visit `
+Then visit `http://localhost:4000/goodandclean.shop/`

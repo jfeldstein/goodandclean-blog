@@ -26,6 +26,9 @@ collections:
   leatherman:
     output: true
     permalink: /leatherman/:path/
+  posts:
+    output: true
+    permalink: /posts/:path/
 
 # Theme settings - using a minimal theme compatible with GitHub Pages
 theme: minima

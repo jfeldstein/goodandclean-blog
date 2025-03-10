@@ -162,6 +162,20 @@ The eBay listings are dynamically fetched from your eBay store page. If you need
 - Automatic addition of your Amazon affiliate ID to all product links
 - Easy to customize and extend
 - Automatic eBay store integration
+- Daily Amazon link checking to detect broken product links
+
+## Automated Link Checking
+
+The site includes a daily link checker that automatically verifies all Amazon product links:
+
+- Runs every day at 2:00 AM UTC
+- Automatically retries links that return server errors
+- Emails a report if any broken links are found
+- Documentation available in [docs/link-checker.md](docs/link-checker.md)
+
+To setup email notifications for broken links:
+1. Add `EMAIL_USERNAME` and `EMAIL_PASSWORD` secrets in GitHub repository settings
+2. The password should be a Gmail app password (not your regular password)
 
 ## Setup
 

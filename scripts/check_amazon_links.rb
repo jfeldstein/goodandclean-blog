@@ -62,7 +62,7 @@ def send_email(report)
   
   # Create email message
   message_params = {
-    from: "Good&Clean Link Checker <linkcheck@#{ENV['MAILGUN_DOMAIN']}>",
+    from: "Good&Clean Link Checker <postmaster@jfeldstein.mailgun.org>",
     to: 'jfeldstein@gmail.com',
     subject: "Good&Clean.shop: #{report.size} Broken Amazon Links Found",
     html: html_body

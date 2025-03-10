@@ -36,7 +36,7 @@ jobs:
         run: |
           curl -s --user "api:$MAILGUN_API_KEY" \
             https://api.mailgun.net/v3/$MAILGUN_DOMAIN/messages \
-            -F from="Good&Clean Link Checker <linkcheck@$MAILGUN_DOMAIN>" \
+            -F from="Good&Clean Link Checker <postmaster@jfeldstein.mailgun.org>" \
             -F to="jfeldstein@gmail.com" \
             -F subject="Amazon Link Check Failed - Good&Clean.shop" \
             -F html="<h1>Link Checker Workflow Failed</h1><p>The Amazon link check workflow failed to run.</p><p>Please check the GitHub Actions logs for more details: <a href='https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}'>Workflow run</a></p>"

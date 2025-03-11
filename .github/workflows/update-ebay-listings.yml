@@ -53,8 +53,8 @@ jobs:
         echo "Actual product changes: $ACTUAL_CHANGES"
         echo "actual_changes=$ACTUAL_CHANGES" >> $GITHUB_OUTPUT
       
-    - name: Commit and push if there are product changes
-      if: steps.check_changes.outputs.has_changes != '0'
+    - name: Commit and push if there are actual changes
+      if: steps.check_changes.outputs.actual_changes != '0'
       run: |
         # Configure Git
         git config --local user.email "actions@github.com"
@@ -67,11 +67,7 @@ jobs:
         ACTUAL_CHANGES="${{ steps.check_changes.outputs.actual_changes }}"
         
         # Commit with timestamp and actual changes count
-        if [ "$ACTUAL_CHANGES" -gt "0" ]; then
-          git commit -m "Auto-update eBay listings with $ACTUAL_CHANGES changes - $(date)"
-        else
-          git commit -m "Auto-update eBay listings (no content changes) - $(date)"
-        fi
+        git commit -m "Auto-update eBay listings with $ACTUAL_CHANGES changes - $(date)"
         
         # Push changes
         git push 

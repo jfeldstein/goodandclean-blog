@@ -11,7 +11,7 @@ features:
   - Compact and portable design
   - Multiple tools in one
   - Lifetime warranty
-last_updated: 2025-03-11 08:02:38
+last_updated: 2025-03-11 09:02:40
 ---
 
 Retired Leatherman Juice C2 RED 1st Gen — Excellent EDC Multi-Tool — Rare, LOOK! - A reliable Leatherman multi-tool for everyday tasks.

@@ -11,7 +11,7 @@ features:
   - Compact and portable design
   - Multiple tools in one
   - Lifetime warranty
-last_updated: 2025-03-11 11:02:17
+last_updated: 2025-03-11 12:03:24
 ---
 
 Retired Leatherman Skeletool CX Carbon Fiber A+ — Excellent EDC Knife Multi Tool - A reliable Leatherman multi-tool for everyday tasks.

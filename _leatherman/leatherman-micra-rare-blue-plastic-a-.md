@@ -11,7 +11,7 @@ features:
   - Compact and portable design
   - Multiple tools in one
   - Lifetime warranty
-last_updated: 2025-03-11 10:02:35
+last_updated: 2025-03-11 11:02:17
 ---
 
 Leatherman Micra Rare Blue Plastic A- - A reliable Leatherman multi-tool for everyday tasks.

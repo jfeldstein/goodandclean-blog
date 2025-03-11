@@ -11,7 +11,7 @@ features:
   - Compact and portable design
   - Multiple tools in one
   - Lifetime warranty
-last_updated: 2025-03-11 13:07:49
+last_updated: 2025-03-11 14:02:23
 ---
 
 Retired Leatherman SuperTool Original Dated "1098" - A reliable Leatherman multi-tool for everyday tasks.

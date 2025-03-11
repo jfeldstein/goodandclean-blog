@@ -260,6 +260,26 @@ listings.each do |listing|
   file_path = File.join('_leatherman', "#{slug}.md")
   is_new_listing = !File.exist?(file_path)
   
+  # For existing listings, read the current content to check for changes
+  current_data = nil
+  if !is_new_listing
+    begin
+      file_content = File.read(file_path)
+      if match = file_content.match(/^---\n(.*?)^---\n(.*)/m)
+        front_matter = match[1]
+        current_data = {
+          price: front_matter.match(/^price:\s*(.+)$/)[1].strip,
+          condition: front_matter.match(/^condition:\s*(.+)$/)[1].strip,
+          link: front_matter.match(/^ebay_link:\s*(.+)$/)[1].strip,
+          image: front_matter.match(/^image:\s*(.+)$/)[1].strip,
+          last_updated: front_matter.match(/^last_updated:\s*(.+)$/)[1].strip
+        }
+      end
+    rescue => e
+      puts "Error reading existing file: #{e.message}"
+    end
+  end
+  
   # Download image or use placeholder if image URL is 'placeholder' or download fails
   if listing[:image_url] == "placeholder"
     puts "Using placeholder image for #{listing[:title]}"
@@ -326,6 +346,26 @@ DESCRIPTION
   # Sanitize the title to prevent YAML parsing errors
   sanitized_title = sanitize_title_for_yaml(listing[:title])
   
+  # Check if there are actual changes to the listing data
+  has_changes = is_new_listing
+  if !is_new_listing && current_data
+    has_changes = (
+      current_data[:price] != listing[:price] ||
+      current_data[:condition] != listing[:condition] ||
+      current_data[:link] != listing[:link] ||
+      current_data[:image] != image_path
+    )
+  end
+  
+  # Only update the last_updated timestamp if it's a new listing or there are actual changes
+  last_updated = if has_changes
+                   Time.now.strftime('%Y-%m-%d %H:%M:%S')
+                 elsif current_data
+                   current_data[:last_updated]
+                 else
+                   Time.now.strftime('%Y-%m-%d %H:%M:%S')
+                 end
+  
   content = <<~CONTENT
 ---
 layout: leatherman
@@ -337,7 +377,7 @@ image: #{image_path}
 ebay_link: #{listing[:link]}
 features:
 #{features.map { |feature| "  - #{feature}" }.join("\n")}
-last_updated: #{Time.now.strftime('%Y-%m-%d %H:%M:%S')}
+last_updated: #{last_updated}
 ---
 
 #{description}
@@ -349,9 +389,11 @@ CONTENT
   if is_new_listing
     puts "Created new product file at: #{file_path}"
     new_listings_count += 1
-  else
-    puts "Updated existing product file at: #{file_path}"
+  elsif has_changes
+    puts "Updated existing product file at: #{file_path} (with changes)"
     updated_listings_count += 1
+  else
+    puts "No changes detected for: #{file_path}"
   end
 end
 

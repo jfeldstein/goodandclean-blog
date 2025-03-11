@@ -46,10 +46,16 @@ jobs:
         echo "has_changes=$CHANGES" >> $GITHUB_OUTPUT
         
         # Extract the actual changes count from the script output
-        ACTUAL_CHANGES=$(grep -A 1 "Update summary:" logs/update_log.txt | tail -1 | grep -o "[0-9]\+ total changes" | grep -o "[0-9]\+")
+        if [ -f logs/update_log.txt ]; then
+          ACTUAL_CHANGES=$(grep -A 1 "Update summary:" logs/update_log.txt | tail -1 | grep -o "[0-9]\+ total changes" | grep -o "[0-9]\+" || echo "0")
+        else
+          ACTUAL_CHANGES=0
+        fi
+        
         if [ -z "$ACTUAL_CHANGES" ]; then
           ACTUAL_CHANGES=0
         fi
+        
         echo "Actual product changes: $ACTUAL_CHANGES"
         echo "actual_changes=$ACTUAL_CHANGES" >> $GITHUB_OUTPUT
       

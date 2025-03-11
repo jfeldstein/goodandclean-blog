@@ -69,6 +69,8 @@ jobs:
         # Commit with timestamp and actual changes count
         if [ "$ACTUAL_CHANGES" -gt "0" ]; then
           git commit -m "Auto-update eBay listings with $ACTUAL_CHANGES changes - $(date)"
+        else
+          git commit -m "Auto-update eBay listings (no content changes) - $(date)"
         fi
         
         # Push changes

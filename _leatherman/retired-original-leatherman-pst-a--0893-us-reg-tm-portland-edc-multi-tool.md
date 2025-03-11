@@ -11,7 +11,7 @@ features:
   - Compact and portable design
   - Multiple tools in one
   - Lifetime warranty
-last_updated: 2025-03-11 12:03:24
+last_updated: 2025-03-11 13:07:49
 ---
 
 Retired Original Leatherman PST A- "0893" US REG TM PORTLAND EDC Multi-Tool - A reliable Leatherman multi-tool for everyday tasks.

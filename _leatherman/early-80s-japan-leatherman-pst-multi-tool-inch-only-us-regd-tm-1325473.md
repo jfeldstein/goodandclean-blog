@@ -11,7 +11,7 @@ features:
   - Compact and portable design
   - Multiple tools in one
   - Lifetime warranty
-last_updated: 2025-03-11 12:03:24
+last_updated: 2025-03-11 13:07:49
 ---
 
 *Early 80's* JAPAN Leatherman PST Multi-Tool, Inch-Only, "US REG'D TM 1325473" - A reliable Leatherman multi-tool for everyday tasks.
